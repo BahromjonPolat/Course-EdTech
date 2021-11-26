@@ -4,10 +4,10 @@ class Category {
   String? _imageUrl;
 
   Category(
-      this._id,
-      this._name,
-      this._imageUrl,
-      );
+    this._id,
+    this._name,
+    this._imageUrl,
+  );
 
   Category.fromJson(Map<String, dynamic> map) {
     _id = map['id'];
@@ -16,10 +16,10 @@ class Category {
   }
 
   Map<String, dynamic> toMap() => {
-    'id': _id,
-    'imageUrl': _imageUrl,
-    'name': _name,
-  };
+        'id': _id,
+        'imageUrl': _imageUrl,
+        'name': _name,
+      };
 
   String get imageUrl => _imageUrl!;
 

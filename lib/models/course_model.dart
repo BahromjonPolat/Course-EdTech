@@ -6,7 +6,6 @@ class Course {
   int? _duration;
   double? _price;
 
-
   Course.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _title = json['title'];
@@ -17,13 +16,13 @@ class Course {
   }
 
   Map<String, dynamic> toMap() => {
-    'id': _id,
-    'title': _title,
-    'subtitle': _subtitle,
-    'imageUrl': _imageUrl,
-    'duration': _duration,
-    'price': _price,
-  };
+        'id': _id,
+        'title': _title,
+        'subtitle': _subtitle,
+        'imageUrl': _imageUrl,
+        'duration': _duration,
+        'price': _price,
+      };
 
   String get id => _id!;
 

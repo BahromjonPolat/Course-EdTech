@@ -1,17 +1,18 @@
-import 'package:course/components/const.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarIconBrightness: Brightness.dark,
-  ));
-
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: ConstColor.kTransparent,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,10 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Course Ed Tech',
       theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
-        primaryColor: ConstColor.kOrangeE35
-      ),
+          primarySwatch: Colors.blue, primaryColor: ConstColor.kOrangeE35),
       home: HomePage(),
     );
   }
