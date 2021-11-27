@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 import 'dart:ui';
+>>>>>>> 1b18ebae62a533f0eb36bfb2d4278331d743ef51
 import 'package:flutter/material.dart';
 
 class ConstColor {
@@ -9,6 +12,10 @@ class ConstColor {
   static const Color kGreyBE = Color(0xffBEBAB3);
   static const Color kGreen5B = Color(0xff5ba092);
   static const Color kTransparent = Colors.transparent;
+  static const Color dark = Color(0xFF3C3A36);
+  static const Color darkGrey = Color(0xFF78746D);
+  static const Color blue = Color(0xFF94C0E9);
+  static const Color lightGrey = Color(0xFFBEBAB3);
   static const Color kDarkGrey = Color(0xff78746D);
   static const Color kBlack = Colors.black;
   static const Color kWhite = Colors.white;
@@ -17,6 +24,3 @@ class ConstColor {
 
 
 }
-
-
-
