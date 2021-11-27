@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         primaryColor: ConstColor.kOrangeE35,
         fontFamily: "Rubik"
       ),
-      home: HomePage(),
+      home: CourseMainPage(),
     );
   }
 }
