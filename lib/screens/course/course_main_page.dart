@@ -51,7 +51,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
                 size: 24.0,
                 fontFamily: "Inter",
               ),
-               SizedBox(height: getUniqueHeight(8.0)),
+              SizedBox(height: getUniqueHeight(8.0)),
               CustomTextWidget(
                 "3 of 11 lessons",
                 weight: FontWeight.w400,
@@ -59,11 +59,6 @@ class _CourseMainPageState extends State<CourseMainPage> {
                 fontFamily: "inter",
               ),
 
-              Row(
-                children: [
-                  ElevatedButton(onPressed: (){}, child: CustomTextWidget("Lesson")),
-                ],
-              ),
             ],
           ),
         ),

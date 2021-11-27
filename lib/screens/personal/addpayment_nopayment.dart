@@ -37,7 +37,7 @@ class PaymentAndPage extends StatelessWidget {
                   const Text(
                     "Payment",
                     style: TextStyle(
-                      color: ConstColor.kBlack,
+                      color: ConstColor.dark,
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500,
                     ),
