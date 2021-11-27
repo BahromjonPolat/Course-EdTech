@@ -22,8 +22,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Course Ed Tech',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.blue, primaryColor: ConstColor.kOrangeE35),
+        primarySwatch: Colors.blue,
+        primaryColor: ConstColor.kOrangeE35,
+        fontFamily: "Rubik"
+      ),
       home: HomePage(),
     );
   }
