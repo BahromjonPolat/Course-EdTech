@@ -14,7 +14,7 @@ class CustomTextWidget extends StatelessWidget {
     Key? key,
     this.size = 14.0,
     this.weight = FontWeight.normal,
-    this.color = ConstColor.dark,
+    this.color = ConstColor.kDarkGrey,
     this.fontFamily = "Rubik",
   }) : super(key: key);
 

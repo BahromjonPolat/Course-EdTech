@@ -37,7 +37,7 @@ class SavedAndPage extends StatelessWidget {
                   const Text(
                     "Saved",
                     style: TextStyle(
-                      color: ConstColor.dark,
+                      color: ConstColor.kDarkGrey,
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500,
                     ),

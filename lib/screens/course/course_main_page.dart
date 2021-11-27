@@ -1,12 +1,6 @@
-import 'package:course/components/const.dart';
-import 'package:course/components/icon_path.dart';
-import 'package:course/components/image_path.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:course/widgets/buttons/icon_button.dart';
-import 'package:course/widgets/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CourseMainPage extends StatefulWidget {
   const CourseMainPage({Key? key}) : super(key: key);
@@ -31,7 +25,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
       );
 
   SliverAppBar _buildSliverAppBar() => SliverAppBar(
-        backgroundColor: ConstColor.blue,
+        backgroundColor: ConstColor.kBlue65,
         elevation: 0.0,
         title: CustomTextWidget("HTML", size: getUniqueWidth(24.0)),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -55,10 +49,9 @@ class _CourseMainPageState extends State<CourseMainPage> {
               CustomTextWidget(
                 "3 of 11 lessons",
                 weight: FontWeight.w400,
-                color: ConstColor.darkGrey,
+                color: ConstColor.kDarkGrey,
                 fontFamily: "inter",
               ),
-
             ],
           ),
         ),
