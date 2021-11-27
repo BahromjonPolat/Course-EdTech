@@ -81,5 +81,5 @@ flutter:
 
     - family: Inter
       fonts:
-        - asset: fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
 
