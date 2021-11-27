@@ -1,3 +1,4 @@
+import 'package:course/widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -15,10 +16,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      //extendBody: true,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16)),
         child: Column(
           children: [
+
             // HEADER SECTION
             SafeArea(
               child: Padding(
@@ -51,23 +54,32 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+
             //SEARCH FIELD
             Container(
               padding: EdgeInsets.zero,
-              margin: EdgeInsets.symmetric(vertical: getUniqueHeight(6)),
+              margin: EdgeInsets.only(top: getUniqueHeight(6)),
               child: TextFieldMark(hintText: "Search course", onPressed: _searchFunction)
             ),
+
             // CATEGORIES SECTION
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomTextWidget("Category:"),
-                _buildChip( "#CSS"),
-                _buildChip( "#UX"),
-                _buildChip( "#Swift"),
-                _buildChip( "#UI"),
-              ],
+            Container(
+              height: getUniqueHeight(24),
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.only(top: getUniqueHeight(12), bottom: getUniqueHeight(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextWidget("Category:"),
+                  _buildChip( "#CSS"),
+                  _buildChip( "#UX"),
+                  _buildChip( "#Swift"),
+                  _buildChip( "#UI"),
+                ],
+              ),
             ),
+
+            // COURSE CARD SECTION
             CourseCard(
               color: ConstColor.kOrangeAccentF8,
               courseDescription: "Advanced mobile interface design",
@@ -79,21 +91,32 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavBar()
     );
   }
 
-  Chip _buildChip(text) {
-    return Chip(
-                padding: EdgeInsets.all(getUniqueWidth(7)),
-                label: Text(
-                 text,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: getUniqueWidth(12),
-                      fontWeight: FontWeight.w500),
-                ),
-                backgroundColor: ConstColor.kBlue65,
-              );
+  Widget _buildChip(text) {
+    return Container(
+      height: getUniqueHeight(24),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(
+        vertical: getUniqueHeight(3),
+        horizontal: getUniqueWidth(11),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+            color: ConstColor.kWhite,
+            fontSize: getUniqueWidth(12),
+            fontWeight: FontWeight.w500),
+      ),
+      decoration: BoxDecoration(
+        color: ConstColor.kBlue65,
+        borderRadius: BorderRadius.circular(
+          getUniqueWidth(12),
+        ),
+      ),
+    );
   }
 
   _searchFunction() {
