@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ConstColor {
   static const Color kOrangeE35 = Color(0xffE3562A);
@@ -11,6 +8,11 @@ class ConstColor {
   static const Color kGreyBE = Color(0xffBEBAB3);
   static const Color kGreen5B = Color(0xff5ba092);
   static const Color kTransparent = Colors.transparent;
+  static const Color dark = Color(0xFF3C3A36);
+  static const Color darkGrey = Color(0xFF78746D);
+  static const Color blue = Color(0xFF94C0E9);
+  static const Color lightGrey = Color(0xFFBEBAB3);
+
 }
 
 

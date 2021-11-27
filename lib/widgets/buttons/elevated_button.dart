@@ -24,6 +24,9 @@ class CustomElevatedButton extends StatelessWidget {
           MediaQuery.of(context).size.width,
           getUniqueHeight(56.0),
         ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(getUniqueWidth(16.0)),
+        ),
       ),
     );
   }
