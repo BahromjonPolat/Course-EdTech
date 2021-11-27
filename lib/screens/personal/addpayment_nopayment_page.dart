@@ -54,7 +54,7 @@ class PaymentAndPage extends StatelessWidget {
               child: Image(
                 image: AssetImage(
                   _isPayment
-                      ? "assets/images/no_payment.png"
+                      ? "assets/images/payment.png"
                       : "assets/images/no_payment.png",
                 ),
               ),

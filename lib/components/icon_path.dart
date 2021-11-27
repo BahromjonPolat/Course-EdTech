@@ -12,4 +12,5 @@ class IconPath {
   static const String settings = "assets/icons/settings.svg";
   static const String out_back = "assets/icons/outlined_back.svg";
   static const String out_notifi = "assets/icons/outlined_notification.svg";
+  static const String search = "assets/icons/search.svg";
 }

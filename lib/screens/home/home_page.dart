@@ -1,7 +1,6 @@
-import 'package:course/widgets/buttons/elevated_button.dart';
+import 'package:course/widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,46 +10,119 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Column(children: [
+      //extendBody: true,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16)),
+        child: Column(
+          children: [
 
-        // HEADER SECTION
-        SafeArea(
-          child: Padding(
-            padding:  EdgeInsets.all(getUniqueWidth(16)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            // HEADER SECTION
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: getUniqueWidth(16)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Hello, fsfs",
-                      style: TextStyle(
-                          fontSize: getUniqueWidth(16), fontWeight: FontWeight.w400),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello,",
+                          style: TextStyle(
+                              fontSize: getUniqueWidth(16),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(height: getUniqueHeight(16)),
+                        Text(
+                          "Juana Antonietta",
+                          style: TextStyle(
+                              fontSize: getUniqueWidth(32),
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ],
                     ),
-                     SizedBox(height: getUniqueHeight(16)),
-                     Text(
-                      "Juana Antonietta",
-                      style: TextStyle(
-                          fontSize: getUniqueWidth(32), fontWeight: FontWeight.w700),
-                    ),
+                    //Container(width: getUniqueWidth(48),  height: getUniqueHeight(48),color: Colors.grey,)
+                    SvgPicture.asset('assets/icons/outlined_notification.svg',
+                        height: getUniqueWidth(48)),
                   ],
                 ),
-                //Container(width: getUniqueWidth(48),  height: getUniqueHeight(48),color: Colors.grey,)
-                SvgPicture.asset('assets/icons/outlined_notification.svg', height: getUniqueWidth(48)),
-              ],
+              ),
             ),
-          ),
+
+            //SEARCH FIELD
+            Container(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.only(top: getUniqueHeight(6)),
+              child: TextFieldMark(hintText: "Search course", onPressed: _searchFunction)
+            ),
+
+            // CATEGORIES SECTION
+            Container(
+              height: getUniqueHeight(24),
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.only(top: getUniqueHeight(12), bottom: getUniqueHeight(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextWidget("Category:"),
+                  _buildChip( "#CSS"),
+                  _buildChip( "#UX"),
+                  _buildChip( "#Swift"),
+                  _buildChip( "#UI"),
+                ],
+              ),
+            ),
+
+            // COURSE CARD SECTION
+            CourseCard(
+              color: ConstColor.kOrangeAccentF8,
+              courseDescription: "Advanced mobile interface design",
+              image: "assets/images/course_ui.png",
+              addTime: "2 h 30 min",
+              title: "UI",
+              cost: "50",
+            ),
+          ],
         ),
-        //SEARCH FIELD
-        Padding(
-          padding: EdgeInsets.all(16),
-        )
-      ],),
+      ),
+      bottomNavigationBar: BottomNavBar()
     );
+  }
+
+  Widget _buildChip(text) {
+    return Container(
+      height: getUniqueHeight(24),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(
+        vertical: getUniqueHeight(3),
+        horizontal: getUniqueWidth(11),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+            color: ConstColor.kWhite,
+            fontSize: getUniqueWidth(12),
+            fontWeight: FontWeight.w500),
+      ),
+      decoration: BoxDecoration(
+        color: ConstColor.kBlue65,
+        borderRadius: BorderRadius.circular(
+          getUniqueWidth(12),
+        ),
+      ),
+    );
+  }
+
+  _searchFunction() {
+    if(_textController.text.isNotEmpty){
+      _textController.clear();
+      debugPrint("Search: _searchText");
+    }
   }
 }
