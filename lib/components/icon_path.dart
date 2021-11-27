@@ -10,4 +10,6 @@ class IconPath {
   static const String play = "assets/icons/play.svg";
   static const String profile = "assets/icons/profile.svg";
   static const String settings = "assets/icons/settings.svg";
+  static const String out_back = "assets/icons/outlined_back.svg";
+  static const String out_notifi = "assets/icons/outlined_notification.svg";
 }
