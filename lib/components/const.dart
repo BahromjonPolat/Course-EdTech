@@ -11,9 +11,5 @@ class ConstColor {
   static const Color kGreyBE = Color(0xffBEBAB3);
   static const Color kGreen5B = Color(0xff5ba092);
   static const Color kTransparent = Colors.transparent;
-  static const Color kBlack = Colors.black;
-
+  static const Color kBlack = Color(0xff3C3A36);
 }
-
-
-

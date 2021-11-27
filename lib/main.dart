@@ -1,4 +1,4 @@
-import 'package:course/screens/personal/addpayment_nopayment.dart';
+import 'package:course/screens/personal/addpayment_nopayment_page.dart';
 import 'package:course/screens/personal/saved_notsaved_page.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
