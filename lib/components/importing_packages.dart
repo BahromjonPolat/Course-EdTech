@@ -1,4 +1,4 @@
-export 'package:course/screens/home/home_page.dart';
+export 'package:course/screens/home/course/home_page.dart';
 export 'package:course/components/size_config.dart';
 export 'package:course/components/const.dart';
 export 'package:firebase_core/firebase_core.dart';
@@ -11,6 +11,8 @@ export 'package:course/widgets/cards/course_card.dart';
 export 'package:course/widgets/text/text_widget.dart';
 export 'package:course/widgets/text_field/text_field.dart';
 export 'package:course/components/image_path.dart';
+export 'package:course/widgets/buttons/icon_button.dart';
+export 'package:course/widgets/bottom_navigation_bar.dart';
 
 
 

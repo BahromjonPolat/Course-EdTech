@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import 'dart:ui';
+>>>>>>> 1b18ebae62a533f0eb36bfb2d4278331d743ef51
 import 'package:flutter/material.dart';
 
 class ConstColor {

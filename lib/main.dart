@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Course Ed Tech',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+<<<<<<< HEAD
           primarySwatch: Colors.blue,
           primaryColor: ConstColor.kOrangeE35,
           fontFamily: "Rubik"),
@@ -34,6 +35,13 @@ class MyApp extends StatelessWidget {
       //home: SavedAndPage(),
       //home: PaymentAndPage(),
       home: const CourseNotFound(),
+=======
+        primarySwatch: Colors.blue,
+        primaryColor: ConstColor.kOrangeE35,
+        fontFamily: "Rubik"
+      ),
+      home: const HomePage(),
+>>>>>>> 1b18ebae62a533f0eb36bfb2d4278331d743ef51
     );
   }
 }

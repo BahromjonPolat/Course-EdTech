@@ -1,4 +1,3 @@
-import 'package:course/components/icon_path.dart';
 import 'package:course/components/image_path.dart';
 import 'package:course/components/importing_packages.dart';
 import 'package:course/widgets/text/text_widget.dart';
@@ -37,7 +36,7 @@ class PaymentAndPage extends StatelessWidget {
                   const Text(
                     "Payment",
                     style: TextStyle(
-                      color: ConstColor.dark,
+                      color: ConstColor.kDarkGrey,
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500,
                     ),

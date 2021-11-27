@@ -2,7 +2,7 @@ import 'package:course/components/importing_packages.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
-  final Color color;
+  Color color;
   String courseDescription;
   String image;
   String title;
@@ -20,6 +20,7 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: getUniqueHeight(16)),
       height: getUniqueHeight(297),
       decoration: BoxDecoration(
           border: Border.all(width: 1, color: ConstColor.kGreyBE),
@@ -30,6 +31,7 @@ class CourseCard extends StatelessWidget {
         children: [
           Container(
             height: getUniqueHeight(194),
+            padding: EdgeInsets.only(top: getUniqueHeight(16)),
             child: Stack(children: [
               Image.asset(image),
               Positioned(
