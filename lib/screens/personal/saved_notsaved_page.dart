@@ -37,7 +37,7 @@ class SavedAndPage extends StatelessWidget {
                   const Text(
                     "Saved",
                     style: TextStyle(
-                      color: ConstColor.kBlack,
+                      color: ConstColor.dark,
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500,
                     ),
@@ -51,10 +51,12 @@ class SavedAndPage extends StatelessWidget {
               height: getUniqueHeight(127),
             ),
             Container(
-              child: SvgPicture.asset(
-                _isSaved ? ImagePath.saved : ImagePath.notSaved,
-                height: getUniqueHeight(253),
-                width: getUniqueWidth(375),
+              child: Image(
+                image: AssetImage(
+                  _isSaved
+                      ? "assets/images/saved.png"
+                      : "assets/images/not_saved.png",
+                ),
               ),
             ),
             SizedBox(
@@ -72,7 +74,7 @@ class SavedAndPage extends StatelessWidget {
             ),
             Container(
               height: getUniqueHeight(42),
-              width: getUniqueWidth(150),
+              width: getUniqueWidth(190),
               child: CustomTextWidget(
                 _isSaved
                     ? "You can find this course in your profile"

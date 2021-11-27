@@ -37,7 +37,7 @@ class PaymentAndPage extends StatelessWidget {
                   const Text(
                     "Payment",
                     style: TextStyle(
-                      color: ConstColor.kBlack,
+                      color: ConstColor.dark,
                       fontSize: 24.0,
                       fontWeight: FontWeight.w500,
                     ),
@@ -51,10 +51,12 @@ class PaymentAndPage extends StatelessWidget {
               height: getUniqueHeight(127),
             ),
             Container(
-              child: SvgPicture.asset(
-                _isPayment ? ImagePath.paymentAdded : ImagePath.noPayment,
-                height: getUniqueHeight(253),
-                width: getUniqueWidth(375),
+              child: Image(
+                image: AssetImage(
+                  _isPayment
+                      ? "assets/images/no_payment.png"
+                      : "assets/images/no_payment.png",
+                ),
               ),
             ),
             SizedBox(
@@ -72,10 +74,10 @@ class PaymentAndPage extends StatelessWidget {
             ),
             Container(
               height: getUniqueHeight(42),
-              width: getUniqueWidth(190),
+              width: getUniqueWidth(195),
               child: CustomTextWidget(
                 _isPayment
-                    ? "You can buy the course now. Continue to payment"
+                    ? "You can buy the course now. Continue to payment."
                     : "You don't have any payment method",
               ),
             ),

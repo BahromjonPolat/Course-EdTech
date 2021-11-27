@@ -26,14 +26,12 @@ class MyApp extends StatelessWidget {
       title: 'Course Ed Tech',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
           primarySwatch: Colors.blue,
           primaryColor: ConstColor.kOrangeE35,
           fontFamily: "Rubik"),
-      //home:  SavedAndPage(),
-      home: HomePage(),
-
-
+      //home: const CourseMainPage(),
+      //home: SavedAndPage(),
+      home: PaymentAndPage(),
     );
   }
 }

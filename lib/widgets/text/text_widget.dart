@@ -1,4 +1,5 @@
 import 'package:course/components/const.dart';
+import 'package:course/components/importing_packages.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextWidget extends StatelessWidget {
@@ -6,13 +7,15 @@ class CustomTextWidget extends StatelessWidget {
   double size;
   FontWeight weight;
   Color color;
+  String fontFamily;
 
   CustomTextWidget(
     this.text, {
     Key? key,
     this.size = 14.0,
     this.weight = FontWeight.normal,
-    this.color = ConstColor.kGreen5B,
+    this.color = ConstColor.dark,
+    this.fontFamily = "Rubik",
   }) : super(key: key);
 
   @override
@@ -20,7 +23,10 @@ class CustomTextWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: size,
+        fontSize: getUniqueWidth(size),
+        color: color,
+        fontWeight: weight,
+        fontFamily: fontFamily,
       ),
     );
   }
