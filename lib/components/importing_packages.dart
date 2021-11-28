@@ -13,6 +13,8 @@ export 'package:course/widgets/text_field/text_field.dart';
 export 'package:course/components/image_path.dart';
 export 'package:course/widgets/buttons/icon_button.dart';
 export 'package:course/widgets/bottom_navigation_bar.dart';
+export 'package:flutter/material.dart';
+export 'package:google_fonts/google_fonts.dart';
 
 
 

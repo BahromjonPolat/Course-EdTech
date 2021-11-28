@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import 'dart:ui';
->>>>>>> 1b18ebae62a533f0eb36bfb2d4278331d743ef51
 import 'package:flutter/material.dart';
 
 class ConstColor {
@@ -21,6 +18,4 @@ class ConstColor {
   static const Color kWhite = Colors.white;
   static const Color kDark = Color(0xFF3C3A36);
   static const Color kLightGrey = Color(0xffF8F2EE);
-
-
 }
