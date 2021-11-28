@@ -1,23 +1,24 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/screens/home/course/search_result_page.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldMark extends StatelessWidget {
-  VoidCallback onPressed;
+  //VoidCallback onPressed;
   String hintText;
+
   TextFieldMark({
-    required this.onPressed,
+   // required this.onPressed,
     required this.hintText,
     Key? key}) : super(key: key);
 
   final TextEditingController _textController = TextEditingController();
-  final _key = GlobalKey<FormFieldState>();
   String? _searchText;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
               controller: _textController,
-              onChanged: (v) => _searchText =v,
+              onChanged: (v) => _searchText = v,
               cursorHeight: getUniqueHeight(21),
               decoration: InputDecoration(
                 suffixIcon: IconButton(
@@ -55,7 +56,8 @@ class TextFieldMark extends StatelessWidget {
    _searchFunction() {
     if(_textController.text.isNotEmpty){
       _textController.clear();
-      print("Search: _searchText  XXX");
+      debugPrint("Search: $_searchText  XXX");
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchResultPage()));
     }
   }
 }
