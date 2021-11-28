@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.zero,
                   margin: EdgeInsets.only(top: getUniqueHeight(6)),
                   child: TextFieldMark(
-                      hintText: "Search course", onPressed: _searchFunction),
+                      hintText: "Search course"),
                 ),
 
                 // CATEGORIES SECTION
