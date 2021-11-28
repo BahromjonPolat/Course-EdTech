@@ -1,6 +1,7 @@
 import 'package:course/components/importing_packages.dart';
 import 'package:course/screens/course/components/tab_button.dart';
 import 'package:course/screens/course/ui/introduction.dart';
+import 'package:course/screens/course/ui/tests_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -27,13 +28,14 @@ class _CourseMainPageState extends State<CourseMainPage> {
           slivers: [
             _buildSliverAppBar(),
             _showHeader(),
-            IntroductionPage(),
+            TestsPage(),
           ],
         ),
       );
 
   SliverAppBar _buildSliverAppBar() => SliverAppBar(
-        backgroundColor: ConstColor.kTransparent,
+        floating: true,
+        backgroundColor: ConstColor.kWhite,
         elevation: 0.0,
         expandedHeight: getUniqueHeight(42.0),
         title: CustomTextWidget(
@@ -73,22 +75,22 @@ class _CourseMainPageState extends State<CourseMainPage> {
 
   Row _showButtons() {
     return Row(
-            children: [
-              CustomTabButton(
-                label: "Lesson",
-                onPressed: () {},
-                borderRadius: CustomTabButton.leftBorder(),
-                color: ConstColor.kDark,
-              ),
-              SizedBox(width: getUniqueWidth(4.0)),
-              CustomTabButton(label: "Tests", onPressed: () {}),
-              SizedBox(width: getUniqueWidth(4.0)),
-              CustomTabButton(
-                label: "Discuss",
-                onPressed: () {},
-                borderRadius: CustomTabButton.rightBorder(),
-              ),
-            ],
-          );
+      children: [
+        CustomTabButton(
+          label: "Lesson",
+          onPressed: () {},
+          borderRadius: CustomTabButton.leftBorder(),
+          color: ConstColor.kDark,
+        ),
+        SizedBox(width: getUniqueWidth(4.0)),
+        CustomTabButton(label: "Tests", onPressed: () {}),
+        SizedBox(width: getUniqueWidth(4.0)),
+        CustomTabButton(
+          label: "Discuss",
+          onPressed: () {},
+          borderRadius: CustomTabButton.rightBorder(),
+        ),
+      ],
+    );
   }
 }
