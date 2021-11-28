@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         primaryColor: ConstColor.kOrangeE35,
         fontFamily: "Rubik"
       ),
-      home: const SearchResultPage(),
+      home: const OwnersCoursesPage(),
     );
   }
 }

@@ -15,7 +15,7 @@ class ImagePath {
   static const String notSaved = "assets/images/not_saved.png";
   static const String notFound = "assets/images/not_found.png";
   static const String paymentAdded = "assets/images/payment_added.png";
-  static const String productDetail = "assets/images/detail.png";
+  static const String productDetail = "assets/images/product_detail.png";
   static const String profile = "assets/images/profile.png";
   static const String result = "assets/images/result.png";
   static const String saved = "assets/images/saved.png";

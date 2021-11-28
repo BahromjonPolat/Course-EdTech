@@ -17,6 +17,13 @@ export 'package:course/widgets/app_bar/app_bar.dart';
 export 'package:course/screens/course/components/tab_button.dart';
 export 'package:course/screens/course/course_main_page.dart';
 export 'package:course/screens/course/result_page.dart';
+export 'package:course/screens/home/course/search_result_page.dart';
+export 'package:course/screens/course/ui/product_detail_page.dart';
+export 'package:course/widgets/text/title_text_widget.dart';
+export 'package:course/screens/course/ui/owners_courses.dart';
+
+
+
 
 
 
