@@ -5,7 +5,7 @@ AppBar setCustomAppBar({String title = ""}) =>  AppBar(
   backgroundColor: ConstColor.kTransparent,
   elevation: 0.0,
   title: CustomTextWidget(
-    "HTML",
+    title,
     size: getUniqueWidth(24.0),
     color: ConstColor.kDark,
   ),
