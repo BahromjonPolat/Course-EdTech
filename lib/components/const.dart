@@ -18,6 +18,4 @@ class ConstColor {
   static const Color kWhite = Colors.white;
   static const Color kDark = Color(0xFF3C3A36);
   static const Color kLightGrey = Color(0xffF8F2EE);
-
-
 }

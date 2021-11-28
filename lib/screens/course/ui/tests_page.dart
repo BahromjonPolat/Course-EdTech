@@ -1,4 +1,5 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/screens/course/quiz_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,10 @@ class TestsPage extends StatelessWidget {
   TestsPage({Key? key}) : super(key: key);
 
   late double _width;
-
+  late BuildContext _context;
   @override
   Widget build(BuildContext context) {
+    _context = context;
     _width = MediaQuery.of(context).size.width;
     return SliverList(
       delegate: SliverChildListDelegate([
@@ -65,7 +67,7 @@ class TestsPage extends StatelessWidget {
                       lineHeight: 1.4,
                     ),
                     const Spacer(),
-                    CustomElevatedButton(onPressed: (){}, label: "Begin"),
+                    CustomElevatedButton(onPressed: _onBeginButtonPressed, label: "Begin"),
                   ],
                 ),
               ),
@@ -73,6 +75,10 @@ class TestsPage extends StatelessWidget {
           ],
         ),
       );
+
+  void _onBeginButtonPressed() {
+    Navigator.push(_context, MaterialPageRoute(builder: (_)=> QuizPage()));
+  }
 
   final String _content =
       "Let’s put your memory on this topic test. Solve tasks and check your knowledge.";
