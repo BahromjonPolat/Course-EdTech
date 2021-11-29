@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>55499155539-bdv19r3uaerorrlvfiiluc385moc79l2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.55499155539-bdv19r3uaerorrlvfiiluc385moc79l2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>55499155539-0dp0vpf7qqsr4bs629mfi323otob639n.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCUb80cptoCeD2L47QuTVE8y8PFnfGkQho</string>
+	<key>GCM_SENDER_ID</key>
+	<string>55499155539</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.edtech.course</string>
+	<key>PROJECT_ID</key>
+	<string>poem-c9e2d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>poem-c9e2d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:55499155539:ios:ac40702e0cfa4d8a38fea6</string>
+	<key>DATABASE_URL</key>
+	<string>https://poem-c9e2d-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

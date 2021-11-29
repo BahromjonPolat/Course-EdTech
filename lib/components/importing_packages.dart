@@ -21,10 +21,3 @@ export 'package:course/widgets/app_bar/app_bar.dart';
 export 'package:course/screens/course/components/tab_button.dart';
 export 'package:course/screens/course/course_main_page.dart';
 export 'package:course/screens/course/result_page.dart';
-
-
-
-
-
-
-

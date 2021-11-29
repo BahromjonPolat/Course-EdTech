@@ -45,3 +45,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/google-services.json
+
+# iOS will place build artifacts here
+/ios/Runner/GoogleService-Info.plist
