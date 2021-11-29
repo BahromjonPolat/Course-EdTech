@@ -1,7 +1,7 @@
 import '../../components/importing_packages.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({ Key? key }) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -10,8 +10,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("kgijdgkl"),
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:course/screens/home/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: ConstColor.kOrangeE35,
         fontFamily: "Rubik"
       ),
-      home: const ChooseLessonsCoursePage(),
+      home: ProfilePage(),
     );
   }
 }
