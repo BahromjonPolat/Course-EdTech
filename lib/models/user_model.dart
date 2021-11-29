@@ -5,6 +5,9 @@ class UserModel {
   String? _password;
   String? _imageUrl;
 
+
+  UserModel(this._id, this._name, this._email, this._password, this._imageUrl);
+
   UserModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _name = json['name'];
@@ -20,4 +23,14 @@ class UserModel {
         'password': _password,
         'imageUrl': _imageUrl,
       };
+
+  String get imageUrl => _imageUrl!;
+
+  String get password => _password!;
+
+  String get email => _email!;
+
+  String get name => _name!;
+
+  String get id => _id!;
 }

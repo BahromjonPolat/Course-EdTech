@@ -25,6 +25,11 @@ export 'package:course/screens/home/course/search_result_page.dart';
 export 'package:course/screens/course/ui/product_detail_page.dart';
 export 'package:course/widgets/text/title_text_widget.dart';
 export 'package:course/screens/course/ui/owners_courses.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+
+export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:course/models/user_model.dart';
+export 'package:course/services/cloud/user_cloud_service.dart';
 
 
 
