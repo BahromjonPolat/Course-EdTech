@@ -1,6 +1,8 @@
 import '../../components/importing_packages.dart';
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -8,9 +10,9 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final finalKey = GlobalKey();
 
-  TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _emailcontroller = TextEditingController();
 
-  TextEditingController _passwordcontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class _SignInPageState extends State<SignInPage> {
               padding: EdgeInsets.only(
                   left: SizeConfig.screenWidth / 2.85,
                   right: SizeConfig.screenWidth / 3.76),
-              child: Container(
+              child: SizedBox(
                 width: SizeConfig.screenWidth / 2.60,
                 height: SizeConfig.screenHeight / 20.3,
                 child: Row(
@@ -154,7 +156,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: ConstColor.kGreyBE),
+          borderSide: const BorderSide(color: ConstColor.kGreyBE),
         ),
       ),
     );

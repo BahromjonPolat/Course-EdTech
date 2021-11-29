@@ -31,6 +31,9 @@ export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:course/models/user_model.dart';
 export 'package:course/services/cloud/user_cloud_service.dart';
 
+export 'package:course/screens/home/course/choose_lessons_course.dart';
+export 'package:course/widgets/cards/main_card.dart';
+export 'package:course/widgets/cards/small_card.dart';
 
 
 
