@@ -83,8 +83,11 @@ class _SignInPageState extends State<SignInPage> {
                 vertical: getUniqueHeight(16),
               ),
               child: InkWell(
-                child: returnText("Forgot Password?", getUniqueHeight(14),
-                    FontWeight.w500, ConstColor.darkGrey),
+                child: returnText(
+                    "Forgot Password?",
+                    getUniqueHeight(14),
+                    FontWeight.w500,
+                    ConstColor.darkGrey),
                 onTap: () {},
               ),
             ),
@@ -93,7 +96,8 @@ class _SignInPageState extends State<SignInPage> {
                   alignment: Alignment.center,
                   height: getUniqueHeight(56),
                   width: getUniqueWidth(343),
-                  margin: EdgeInsets.only(bottom: getUniqueHeight(16)),
+                  margin:
+                      EdgeInsets.only(bottom: getUniqueHeight(16)),
                   decoration: BoxDecoration(
                     color: ConstColor.kOrangeE35,
                     borderRadius: BorderRadius.circular(16),
@@ -104,17 +108,15 @@ class _SignInPageState extends State<SignInPage> {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
-                getUniqueWidth(155),
+                 getUniqueWidth(155),
                 0,
                 getUniqueWidth(155),
-                getUniqueHeight(69),
-              ),
+                getUniqueHeight(69),),
               child: InkWell(
                 child: returnText("Sign up", SizeConfig.screenHeight / 58,
                     FontWeight.w500, ConstColor.darkGrey),
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => SignUpPage()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
                 },
               ),
             ),

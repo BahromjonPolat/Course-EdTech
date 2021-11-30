@@ -10,6 +10,7 @@ export 'package:course/widgets/cards/course_card.dart';
 export 'package:course/widgets/cards/main_card.dart';
 export 'package:course/widgets/cards/small_card.dart';
 
+    // SCREENS
 // SCREENS
 export 'package:course/screens/course/components/tab_button.dart';
 export 'package:course/screens/home/course/course_main_page.dart';
@@ -20,6 +21,7 @@ export 'package:course/screens/course/ui/product_detail_page.dart';
 export 'package:course/screens/course/ui/owners_courses.dart';
 export 'package:course/screens/course/choose_lessons_course.dart';
 export 'package:course/screens/auth/sign_in_page.dart';
+export 'package:course/screens/auth/sign_up_page.dart';
 export 'package:course/screens/onboarding/components/intro_page_component_list.dart';
 export 'package:course/screens/onboarding/components/intro_page_layout.dart';
 export 'package:course/screens/onboarding/components/page_indicator.dart';
@@ -45,7 +47,7 @@ export 'package:course/models/quiz_model.dart';
 export 'package:course/models/category_model.dart';
 export 'package:course/models/lesson_model.dart';
 
-// IMPORTING PACKAGES
+  // IMPORTING PACKAGES
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:flutter/material.dart';
