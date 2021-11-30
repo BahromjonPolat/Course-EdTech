@@ -1,5 +1,7 @@
+import 'package:course/screens/auth/profile_page.dart';
 import 'package:course/screens/auth/sign_in_page.dart';
 import 'package:course/screens/auth/sign_up_page.dart';
+import 'package:course/screens/onboarding/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         primaryColor: ConstColor.kOrangeE35,
         fontFamily: "Rubik"
       ),
-      home: const OwnersCoursesPage(),
+      home:  SplashScreenPage(),
     );
   }
 }

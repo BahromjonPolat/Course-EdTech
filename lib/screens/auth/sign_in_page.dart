@@ -1,3 +1,5 @@
+
+
 import '../../components/importing_packages.dart';
 
 class SignInPage extends StatefulWidget {
@@ -8,6 +10,9 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
+  final AuthService _authService = AuthMethods();
+
   final finalKey = GlobalKey();
 
   final TextEditingController _emailcontroller = TextEditingController();

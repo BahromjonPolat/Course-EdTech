@@ -3,7 +3,7 @@ import 'package:course/components/importing_packages.dart';
 abstract class AuthService {
   Future<User> signInWithEmailAndPassword(String email, String password);
 
-  Future<User> createUserWithEmailAndPassword(
+  Future createUserWithEmailAndPassword(
     String name,
     String email,
     String password,
@@ -18,17 +18,19 @@ class AuthMethods extends AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  Future<User> createUserWithEmailAndPassword(
+  Future createUserWithEmailAndPassword(
     String name,
     String email,
     String password,
   ) async {
-    UserCredential _credential = await _auth
+    print('AuthMethods.createUserWithEmailAndPassword. created user');
+    await _auth
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
     )
-        .whenComplete(() async {
+        .whenComplete(()  {
+      print('AuthMethods.createUserWithEmailAndPassword. when completed');
       UserModel userModel = UserModel(
         _auth.currentUser!.uid,
         name,
@@ -37,10 +39,8 @@ class AuthMethods extends AuthService {
         "default",
       );
       CloudStoreService service = CloudStoreMethods();
-      await service.setUserData(userModel);
+       service.setUserData(userModel);
     });
-    User user = _credential.user!;
-    return user;
   }
 
   @override

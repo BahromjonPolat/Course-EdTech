@@ -35,6 +35,9 @@ export 'package:course/screens/home/course/choose_lessons_course.dart';
 export 'package:course/widgets/cards/main_card.dart';
 export 'package:course/widgets/cards/small_card.dart';
 
+export 'package:fluttertoast/fluttertoast.dart';
+export 'package:course/services/auth_service.dart';
+
 
 
 
