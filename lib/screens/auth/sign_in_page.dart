@@ -8,6 +8,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  final AuthService _authService = AuthMethods();
+
   final finalKey = GlobalKey();
 
   final TextEditingController _emailcontroller = TextEditingController();
@@ -100,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   child: returnText("Log in", getUniqueHeight(16),
                       FontWeight.w500, ConstColor.kWhite)),
-              onTap: () {},
+              onTap: _onSignInButtonPressed,
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
@@ -165,5 +167,29 @@ class _SignInPageState extends State<SignInPage> {
     return InkWell(
       child: SvgPicture.asset(Svgpicture),
     );
+  }
+
+  void _onSignInButtonPressed() async {
+    String email = _emailcontroller.text.trim();
+    String password = _passwordcontroller.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      Fluttertoast.showToast(msg: "Please, Fill all fields");
+      return;
+    }
+    try {
+      await _authService
+          .signInWithEmailAndPassword(email, password)
+          .whenComplete(() {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => HomePage(),
+          ),
+        );
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

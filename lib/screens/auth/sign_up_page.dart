@@ -1,3 +1,5 @@
+import 'package:course/services/auth_service.dart';
+
 import '../../components/importing_packages.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -7,9 +9,12 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final finalKey = GlobalKey();
-  TextEditingController _emailcontroller = TextEditingController();
-  TextEditingController _namecontroller = TextEditingController();
-  TextEditingController _passwordcontroller = TextEditingController();
+  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _namecontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
+
+  final AuthService _authService = AuthMethods();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -83,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   child: returnText("Sign up", getUniqueHeight(16),
                       FontWeight.w500, ConstColor.kWhite)),
-              onTap: () {},
+              onTap: _onSignUpButtonPressed,
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
@@ -149,5 +154,34 @@ class _SignUpPageState extends State<SignUpPage> {
     return InkWell(
       child: SvgPicture.asset(Svgpicture),
     );
+  }
+
+  void _onSignUpButtonPressed() async {
+    String name = _namecontroller.text.trim();
+    String email = _emailcontroller.text.trim().toLowerCase();
+    String password = _passwordcontroller.text.trim();
+
+    print('_SignUpPageState._onSignUpButtonPressed');
+    if (name.isEmpty || email.isEmpty || password.isEmpty) {
+      Fluttertoast.showToast(msg: "Please, fill all fields");
+      print("object");
+      return;
+    }
+
+    try {
+      await _authService
+          .createUserWithEmailAndPassword(name, email, password)
+          .then((value) {
+        Fluttertoast.showToast(msg: value.uid);
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print("Password is weak");
+      } else if (e.code == 'email-already-in-use') {
+        print("email-already-in-use");
+      }
+    } catch (e) {
+      print("e");
+    }
   }
 }
