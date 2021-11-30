@@ -22,35 +22,28 @@ class _SignInPageState extends State<SignInPage> {
         child: Column(
           children: [
             Container(
-              height: SizeConfig.screenHeight / 2.36,
+              height: getUniqueHeight(253),
               margin: EdgeInsets.only(
-                  top: SizeConfig.screenHeight / 8.45,
-                  bottom: SizeConfig.screenHeight / 50.75),
+                  top: getUniqueHeight(96), bottom: getUniqueHeight(16)),
               child: Image.asset(ImagePath.login),
             ),
             Container(
                 margin: EdgeInsets.only(
-                    left: SizeConfig.screenWidth / 11.36,
-                    bottom: SizeConfig.screenHeight / 101.5),
-                height: SizeConfig.screenHeight / 25.75,
-                width: SizeConfig.screenWidth / 1.09,
-                child: returnText("Log in", SizeConfig.screenHeight / 33.83,
+                    left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
+                height: getUniqueHeight(32),
+                width: getUniqueWidth(341),
+                child: returnText("Log in", getUniqueHeight(24),
                     FontWeight.w500, ConstColor.dark)),
             Container(
                 margin: EdgeInsets.only(
-                    left: SizeConfig.screenWidth / 11.36,
-                    bottom: SizeConfig.screenHeight / 101.5),
-                height: SizeConfig.screenHeight / 38.66,
-                width: SizeConfig.screenWidth / 1.09,
-                child: returnText(
-                    "Log in with social networks",
-                    SizeConfig.screenHeight / 54,
-                    FontWeight.w400,
-                    ConstColor.darkGrey)),
+                    left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
+                height: getUniqueHeight(21),
+                width: getUniqueWidth(341),
+                child: returnText("Log in with social networks",
+                    getUniqueHeight(14), FontWeight.w400, ConstColor.darkGrey)),
             Padding(
               padding: EdgeInsets.only(
-                  left: SizeConfig.screenWidth / 2.85,
-                  right: SizeConfig.screenWidth / 3.76),
+                  left: getUniqueWidth(131.5), right: getUniqueWidth(116.93)),
               child: SizedBox(
                 width: SizeConfig.screenWidth / 2.60,
                 height: SizeConfig.screenHeight / 20.3,
@@ -65,12 +58,15 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(SizeConfig.screenHeight / 50.75),
+              padding: EdgeInsets.all(
+                getUniqueHeight(16),
+              ),
               child: currentTextform("Email", _emailcontroller),
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenHeight / 50.75),
+                horizontal: getUniqueWidth(16),
+              ),
               child: currentTextform(
                 "Password",
                 _passwordcontroller,
@@ -79,13 +75,13 @@ class _SignInPageState extends State<SignInPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: SizeConfig.screenWidth / 2.99,
-                vertical: SizeConfig.screenHeight / 50.75,
+                horizontal: getUniqueWidth(122),
+                vertical: getUniqueHeight(16),
               ),
               child: InkWell(
                 child: returnText(
                     "Forgot Password?",
-                    SizeConfig.screenHeight / 58,
+                    getUniqueHeight(14),
                     FontWeight.w500,
                     ConstColor.darkGrey),
                 onTap: () {},
@@ -94,24 +90,24 @@ class _SignInPageState extends State<SignInPage> {
             InkWell(
               child: Container(
                   alignment: Alignment.center,
-                  height: SizeConfig.screenHeight / 14.5,
-                  width: SizeConfig.screenWidth / 1.09,
+                  height: getUniqueHeight(56),
+                  width: getUniqueWidth(343),
                   margin:
-                      EdgeInsets.only(bottom: SizeConfig.screenHeight / 50.75),
+                      EdgeInsets.only(bottom: getUniqueHeight(16)),
                   decoration: BoxDecoration(
                     color: ConstColor.kOrangeE35,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: returnText("Log in", SizeConfig.screenHeight / 50.75,
+                  child: returnText("Log in", getUniqueHeight(16),
                       FontWeight.w500, ConstColor.kWhite)),
               onTap: () {},
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
-                  SizeConfig.screenWidth / 2.34,
-                  0,
-                  SizeConfig.screenWidth / 2.31,
-                  SizeConfig.screenHeight / 12.68),
+                 getUniqueWidth(155),
+                0,
+                getUniqueWidth(155),
+                getUniqueHeight(69),),
               child: InkWell(
                 child: returnText("Sign up", SizeConfig.screenHeight / 58,
                     FontWeight.w500, ConstColor.darkGrey),
@@ -124,6 +120,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  //Text return qiluvchi Metod
   Text returnText(
       [String? currentText,
       double? fontsize,
@@ -137,6 +134,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  //Textform return qiluvchi Metod
   TextFormField currentTextform(String text, TextEditingController controller,
       [var icons]) {
     return TextFormField(
@@ -162,6 +160,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+  //Svg iconlarni Inkwell ichida return qiladigan metod
   svgiconsMethod(dynamic Svgpicture) {
     return InkWell(
       child: SvgPicture.asset(Svgpicture),

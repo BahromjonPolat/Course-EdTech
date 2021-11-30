@@ -19,7 +19,7 @@ class ImagePath {
   static const String profile = "assets/images/profile.png";
   static const String result = "assets/images/result.png";
   static const String saved = "assets/images/saved.png";
-  static const String setting = "assets/images/setting.png";
+  static const String setting = "assets/images/settings.png";
   static const String signUp = "assets/images/sign_up.png";
   static const String splash = "assets/images/splash.png";
   static const String test = "assets/images/test.png";
