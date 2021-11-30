@@ -15,6 +15,7 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _emailcontroller = TextEditingController();
 
   final TextEditingController _passwordcontroller = TextEditingController();
+  bool truemi = true;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
               child: currentTextform(
                 "Password",
                 _passwordcontroller,
-                Icons.remove_red_eye,
+               truemi != false ? Icons.remove_red_eye : Icons.visibility_off,
               ),
             ),
             Padding(
@@ -140,15 +141,21 @@ class _SignInPageState extends State<SignInPage> {
   TextFormField currentTextform(String text, TextEditingController controller,
       [var icons]) {
     return TextFormField(
+      obscureText: icons == null ? false : truemi,
       controller: controller,
       decoration: InputDecoration(
+      
         hintText: text,
         hintStyle: GoogleFonts.rubik(
             fontSize: SizeConfig.screenHeight / 58,
             fontWeight: FontWeight.w400,
             color: ConstColor.kDarkGrey),
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              truemi = !truemi;
+            });
+          },
           icon: Icon(
             icons,
             color: ConstColor.kDarkGrey,
