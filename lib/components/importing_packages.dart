@@ -31,6 +31,7 @@ export 'package:course/screens/onboarding/intro_page.dart';
     // SERVICES
 export 'package:course/services/cloud/user_cloud_service.dart';
 export 'package:course/services/auth_service.dart';
+export 'package:course/services/cloud/course_service.dart';
 
     // COMPONENTS
 export 'package:course/components/icon_path.dart';
@@ -41,6 +42,7 @@ export 'package:course/components/const.dart';
     // MODELS
 export 'package:course/models/user_model.dart';
 export 'package:course/models/intro_model.dart';
+export 'package:course/models/course_model.dart';
 
 // IMPORTING PACKAGES
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,6 +54,7 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_svg/svg.dart';
+export 'package:uuid/uuid.dart';
 
 
 

@@ -5,6 +5,17 @@ class Course {
   String? _imageUrl;
   int? _duration;
   double? _price;
+  DateTime? _timestamp;
+
+  Course(
+    this._id,
+    this._title,
+    this._subtitle,
+    this._imageUrl,
+    this._duration,
+    this._price,
+    this._timestamp,
+  );
 
   Course.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -13,6 +24,7 @@ class Course {
     _imageUrl = json['imageUrl'];
     _duration = json['duration'];
     _price = json['price'];
+    _timestamp = json['timestamp'];
   }
 
   Map<String, dynamic> toMap() => {
@@ -22,6 +34,7 @@ class Course {
         'imageUrl': _imageUrl,
         'duration': _duration,
         'price': _price,
+        'timestamp': _timestamp,
       };
 
   String get id => _id!;
@@ -35,4 +48,6 @@ class Course {
   String get imageUrl => _imageUrl!;
 
   String get subtitle => _subtitle!;
+
+  DateTime get timestamp => _timestamp!;
 }
