@@ -113,7 +113,9 @@ class _SignInPageState extends State<SignInPage> {
               child: InkWell(
                 child: returnText("Sign up", SizeConfig.screenHeight / 58,
                     FontWeight.w500, ConstColor.darkGrey),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
+                },
               ),
             ),
           ],

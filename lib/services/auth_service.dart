@@ -28,8 +28,7 @@ class AuthMethods extends AuthService {
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
-    )
-        .whenComplete(()  {
+    ).whenComplete(()  {
       print('AuthMethods.createUserWithEmailAndPassword. when completed');
       UserModel userModel = UserModel(
         _auth.currentUser!.uid,
