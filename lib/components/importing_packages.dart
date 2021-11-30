@@ -39,6 +39,11 @@ export 'package:fluttertoast/fluttertoast.dart';
 export 'package:course/services/auth_service.dart';
 
 
+export 'package:course/models/intro_model.dart';
+export 'package:course/screens/onboarding/components/intro_page_component_list.dart';
+export 'package:course/screens/onboarding/components/intro_page_layout.dart';
+export 'package:course/screens/onboarding/components/page_indicator.dart';
+
 
 
 
