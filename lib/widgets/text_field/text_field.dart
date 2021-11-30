@@ -1,5 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/home/course/search_result_page.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldMark extends StatelessWidget {

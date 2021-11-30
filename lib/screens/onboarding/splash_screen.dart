@@ -1,12 +1,7 @@
 import 'dart:async';
-
-import 'package:course/components/image_path.dart';
-import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/auth/sign_in_page.dart';
-import 'package:course/screens/onboarding/components/custom_image.dart';
-import 'package:course/screens/onboarding/intro_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:course/components/importing_packages.dart';
+
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
