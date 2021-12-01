@@ -22,19 +22,28 @@ class ProfilePage extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(
-              top: getUniqueHeight(53),
-              left: getUniqueWidth(3.19),
-              right: getUniqueWidth(3.19),
-              bottom: getUniqueHeight(50.75)),
-          height: 150.0,
-          width: 148.99,
+            top: getUniqueHeight(53),
+            left: getUniqueWidth(3.19),
+            right: getUniqueWidth(3.19),
+            bottom: getUniqueHeight(24.0),
+          ),
+          height: getUniqueHeight(140.0),
+          width: getUniqueWidth(140.0),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 5),
-              borderRadius: BorderRadius.circular(90),
+              border: Border.all(
+                color: ConstColor.kBlue65,
+                width: getUniqueWidth(4.0),
+              ),
+              borderRadius: BorderRadius.circular(
+                getUniqueWidth(90.0),
+              ),
               color: ConstColor.kLightGrey),
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(getUniqueWidth(90.0)),
-              child: Image.asset(ImagePath.profile)),
+            borderRadius: BorderRadius.circular(
+              getUniqueWidth(90.0),
+            ),
+            child: Image.asset(ImagePath.profile),
+          ),
         ),
         buttonMethod("Your Courses", context, nextPage: OwnersCoursesPage()),
         // Keyingi Pageni yozib qo'yish kerak
@@ -49,21 +58,23 @@ class ProfilePage extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-        backgroundColor: ConstColor.kWhite,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          "Profile",
-          style: GoogleFonts.rubik(
-              fontSize: getUniqueHeight(24),
-              fontWeight: FontWeight.w500,
-              color: ConstColor.dark),
+      backgroundColor: ConstColor.kWhite,
+      elevation: 0,
+      centerTitle: true,
+      title: Text(
+        "Profile",
+        style: GoogleFonts.rubik(
+            fontSize: getUniqueHeight(24),
+            fontWeight: FontWeight.w500,
+            color: ConstColor.dark),
+      ),
+      leading: Padding(
+        padding: EdgeInsets.only(left: getUniqueWidth(17),),
+        child: InkWell(
+          child: SvgPicture.asset(IconPath.out_back),
         ),
-        leading: Padding(
-            padding: EdgeInsets.only(left: getUniqueWidth(17)),
-            child: InkWell(
-              child: SvgPicture.asset(IconPath.out_back),
-            )));
+      ),
+    );
   }
 
   // Bu Keyingi pagega o'tadigan button uchun Metod
@@ -79,7 +90,7 @@ class ProfilePage extends StatelessWidget {
         width: getUniqueWidth(343),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: ConstColor.kGreyBE)),
+            border: Border.all(color: ConstColor.kGreyBE),),
         child: Text(
           title,
           style: GoogleFonts.rubik(
