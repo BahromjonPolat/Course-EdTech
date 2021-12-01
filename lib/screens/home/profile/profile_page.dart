@@ -51,12 +51,11 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 
   // Bu Keyingi pagega o'tadigan button uchun Metod
-   buttonMethod(String word,context,{NextPage}) {
+   buttonMethod(String title,context,{NextPage}) {
     return InkWell(
       child: Container(
         margin: EdgeInsets.all(getUniqueHeight(16)),
@@ -67,7 +66,7 @@ class ProfilePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: ConstColor.kGreyBE)),
         child: Text(
-          word,
+          title,
           style: GoogleFonts.rubik(
               fontSize: getUniqueHeight(24),
               fontWeight: FontWeight.w500,

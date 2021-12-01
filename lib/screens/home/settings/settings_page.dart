@@ -9,6 +9,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   String userEmail = "";
   bool switchvalue = false;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -21,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text(
           "Settings",
           style: GoogleFonts.rubik(
-              fontSize: getUniqueHeight(24),
+              fontSize: getUniqueWidth(24.0),
               fontWeight: FontWeight.w500,
               color: ConstColor.dark),
         ),
@@ -36,21 +37,26 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: getUniqueHeight(190),
-              width: getUniqueWidth(343),
-              margin: EdgeInsets.fromLTRB(
-                getUniqueWidth(16),
-                getUniqueHeight(28),
-                getUniqueWidth(16),
-                getUniqueHeight(16),
+            Padding(
+              padding: EdgeInsets.only(
+                left: getUniqueWidth(16.0),
+                bottom: getUniqueHeight(8.0),
+                top: getUniqueHeight(24.0),
+                right: getUniqueWidth(16.0),
               ),
-              child: Image.asset(ImagePath.setting),
+              child: Image.asset(
+                ImagePath.setting,
+                height: getUniqueHeight(190.0),
+                width: getUniqueWidth(343.0),
+              ),
             ),
             buttonMethod(
                 "Notifications", IconPath.circleNotification, true, ""),
             Padding(
-              padding: EdgeInsets.only(left: getUniqueHeight(16)),
+              padding: EdgeInsets.symmetric(
+                horizontal: getUniqueWidth(16.0),
+                vertical: getUniqueWidth(8.0),
+              ),
               child: Text(
                 "Account information",
                 style: GoogleFonts.rubik(
@@ -59,62 +65,73 @@ class _SettingsPageState extends State<SettingsPage> {
                     color: ConstColor.dark),
               ),
             ),
-            buttonMethod("Name", IconPath.circleAccount, false,
-                userEmail), // UserEmailni o'rniga  firebasedagi nameni ulash kerak
-            buttonMethod("Email", IconPath.circleMail, false,
-                userEmail), // UserEmailni o'rniga  firebasedagi emailni ulash kerak
+            buttonMethod(
+                "Name", IconPath.circleAccount, false, "Juana Antonieta"),
+            // UserEmailni o'rniga  firebasedagi nameni ulash kerak
+            buttonMethod(
+                "Email", IconPath.circleMail, false, "juanita123@gmail.com"),
+            // UserEmailni o'rniga  firebasedagi emailni ulash kerak
             buttonMethod("Password", IconPath.circlePassword, false,
-                userEmail), // UserEmailni o'rniga  firebasedagi password o'zgargan vaqtni ulash kerak
+                "changed 2 weeks ago"),
+            // UserEmailni o'rniga  firebasedagi password o'zgargan vaqtni ulash kerak
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 
 // Bu listtile buttonlari uchun Metod
-  buttonMethod(String text, var icon, bool switchmi, String subt, 
-      [var NextPage]) { //NextPagega keyingi pageni ulash kerak
-    return Container(
-      margin: EdgeInsets.all(getUniqueHeight(16)),
-      alignment: Alignment.center,
-      height: getUniqueHeight(82),
-      width: getUniqueWidth(343),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: ConstColor.kGreyBE)),
-      child: ListTile(
-        title: Text(
-          text,
-          style: GoogleFonts.rubik(
-              fontSize: getUniqueHeight(20),
-              fontWeight: FontWeight.w500,
-              color: ConstColor.dark),
-        ),
-        subtitle: subt != ""
-            ? Text(
-                subt,
-                style: GoogleFonts.rubik(
-                    fontSize: getUniqueHeight(14),
+  buttonMethod(String title, String icon, bool isSwitch, String subtitle,
+      {Scaffold? nextPage}) {
+    //NextPagega keyingi pageni ulash kerak
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: getUniqueWidth(16.0),
+        vertical: getUniqueHeight(8.0),
+      ),
+      child: SizedBox(
+        height: getUniqueHeight(82.0),
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(
+            vertical: getUniqueHeight(8.16),
+            horizontal: getUniqueWidth(16.0),
+          ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(getUniqueWidth(16.0)),
+              side: const BorderSide(color: ConstColor.kGreyBE)),
+          title: Text(
+            title,
+            style: GoogleFonts.rubik(
+                fontSize: getUniqueWidth(20),
+                fontWeight: FontWeight.w500,
+                color: ConstColor.dark),
+          ),
+          subtitle: subtitle != ""
+              ? Text(
+                  subtitle,
+                  style: GoogleFonts.rubik(
+                    fontSize: getUniqueWidth(14),
                     fontWeight: FontWeight.w400,
-                    color: ConstColor.dark),
-              )
-            : null,
-        leading: SvgPicture.asset(icon),
-        trailing: switchmi
-            ? switchMethod()
-            : IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.arrow_forward_ios),
+                    color: ConstColor.darkGrey,
+                  ),
+                )
+              : null,
+          leading: SvgPicture.asset(icon),
+          trailing: isSwitch
+              ? switchMethod()
+              : IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_ios),
+                ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => nextPage ?? const HomePage(),
               ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => NextPage(),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
