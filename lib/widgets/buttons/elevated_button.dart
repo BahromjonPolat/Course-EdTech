@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class CustomElevatedButton extends StatelessWidget {
   VoidCallback onPressed;
   String label;
+  Color? color;
 
   CustomElevatedButton({
     required this.onPressed,
     required this.label,
+    this.color = ConstColor.kOrangeE35,
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +25,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        primary: ConstColor.kOrangeE35,
+        primary: color,
         elevation: 0.0,
         fixedSize: Size(
           MediaQuery.of(context).size.width,

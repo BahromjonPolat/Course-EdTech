@@ -10,6 +10,8 @@ export 'package:course/widgets/app_bar/app_bar.dart';
 export 'package:course/widgets/cards/course_card.dart';
 export 'package:course/widgets/cards/main_card.dart';
 export 'package:course/widgets/cards/small_card.dart';
+export 'package:course/widgets/buttons/text_button.dart';
+
 
 // SCREENS
 export 'package:course/screens/course/components/tab_button.dart';
@@ -27,6 +29,8 @@ export 'package:course/screens/onboarding/components/intro_page_layout.dart';
 export 'package:course/screens/onboarding/components/page_indicator.dart';
 export 'package:course/screens/onboarding/components/custom_image.dart';
 export 'package:course/screens/onboarding/intro_page.dart';
+export 'package:course/screens/personal/addpayment_nopayment_page.dart';
+export 'package:course/screens/personal/saved_notsaved_page.dart';
 
 // SERVICES
 export 'package:course/services/cloud/user_cloud_service.dart';
