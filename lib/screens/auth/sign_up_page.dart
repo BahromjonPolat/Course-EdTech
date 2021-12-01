@@ -67,19 +67,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       FontWeight.w400, ConstColor.darkGrey)),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: getUniqueHeight(14)),
-                child: currentTextform(
-                  "Name",
-                  _namecontroller,
-                  TextInputType.name,
-                ),
+                child: currentTextform("Name", _namecontroller, TextInputType.name,),
               ),
               Padding(
                 padding: EdgeInsets.all(getUniqueHeight(14)),
-                child: currentTextform(
-                  "Email",
-                  _emailcontroller,
-                  TextInputType.emailAddress,
-                ),
+                child: currentTextform("Email", _emailcontroller, TextInputType.emailAddress,),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: getUniqueHeight(14)),
@@ -87,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   "Password",
                   _passwordcontroller,
                   TextInputType.visiblePassword,
-                  eye ? Icons.remove_red_eye_outlined : Icons.remove_red_eye,
+                  eye ?  Icons.remove_red_eye_outlined: Icons.remove_red_eye,
                 ),
               ),
               InkWell(
@@ -115,10 +107,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: returnText("Log in", SizeConfig.screenHeight / 58,
                       FontWeight.w500, ConstColor.darkGrey),
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignInPage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) => const SignInPage()));
                   },
                 ),
               ),
@@ -144,10 +134,13 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 //Textform return qiluvchi Metod
-  TextFormField currentTextform(String text, TextEditingController controller,
+  TextFormField currentTextform(
+      String text,
+      TextEditingController controller,
       TextInputType textInputType,
       [var icons]) {
     return TextFormField(
+
       validator: (text) {
         if (textInputType == TextInputType.emailAddress) {
           if (!RegExp(
@@ -155,16 +148,16 @@ class _SignUpPageState extends State<SignUpPage> {
               .hasMatch(controller.text)) {
             return "Email xato";
           }
-        } else {
+        }
+        else {
           if (text!.length < 4) {
-            return "4 ta belgidan kam bo'lmasin";
-          }
+           return "4 ta belgidan kam bo'lmasin";
+       }
         }
       },
       controller: controller,
       keyboardType: textInputType,
-      obscureText:
-          textInputType == TextInputType.visiblePassword ? !eye : false,
+      obscureText: textInputType == TextInputType.visiblePassword ? !eye: false,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: GoogleFonts.rubik(
@@ -202,15 +195,17 @@ class _SignUpPageState extends State<SignUpPage> {
     String password = _passwordcontroller.text.trim();
 
     debugPrint('_SignUpPageState._onSignUpButtonPressed');
-    debugPrint("$name  $email  $password");
+    debugPrint("$name  $email  $password" );
 
-    if (_formKey.currentState!.validate()) {
+
+    if(_formKey.currentState!.validate()){
       _formKey.currentState!.save();
       try {
         await _authService
             .createUserWithEmailAndPassword(name, email, password)
             .then((value) {
           Fluttertoast.showToast(msg: value.uid);
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
         });
 
         String uid = FirebaseAuth.instance.currentUser!.uid;
@@ -226,9 +221,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          Fluttertoast.showToast(msg: "Weak password");
+          debugPrint("Password is weak");
         } else if (e.code == 'email-already-in-use') {
-          Fluttertoast.showToast(msg: "Email already in use");
+          debugPrint("email-already-in-use");
+          Fluttertoast.showToast(msg: "email-already-in-use",);
+
         }
       } catch (e) {
         debugPrint("$e");
@@ -254,10 +251,13 @@ class _SignUpPageState extends State<SignUpPage> {
     //     debugPrint("e");
     //   }
 
+
     // if (name.isEmpty || email.isEmpty || password.isEmpty) {
     //   Fluttertoast.showToast(msg: "Please, fill all fields" );
     //   debugPrint("object");
     //   return;
     // }
+
+
   }
 }
