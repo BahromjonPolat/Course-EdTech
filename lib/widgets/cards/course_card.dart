@@ -9,12 +9,14 @@ class CourseCard extends StatelessWidget {
   String addTime;
   String cost;
 
-  CourseCard({required this.color, required this.courseDescription,
-    required this.image,
-    required this.title,
-    required this.addTime,
-    required this.cost,
-    Key? key})
+  CourseCard(
+      {required this.color,
+      required this.courseDescription,
+      required this.image,
+      required this.title,
+      required this.addTime,
+      required this.cost,
+      Key? key})
       : super(key: key);
 
   @override
@@ -23,31 +25,40 @@ class CourseCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: getUniqueHeight(16)),
       height: getUniqueHeight(297),
       decoration: BoxDecoration(
-          border: Border.all(width: 1, color: ConstColor.kGreyBE),
-          borderRadius: BorderRadius.circular(getUniqueWidth(8))),
+        border: Border.all(width: 1, color: ConstColor.kGreyBE),
+        borderRadius: BorderRadius.circular(
+          getUniqueWidth(8),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             height: getUniqueHeight(194),
-            padding: EdgeInsets.only(top: getUniqueHeight(16)),
-            child: Stack(children: [
-              Image.asset(image),
-              Positioned(
-                right: getUniqueWidth(16),
-                bottom: getUniqueHeight(8),
-                child:  Chip(
-                  label: Text("\$ $cost",
-                  style: TextStyle(
-                    fontSize: getUniqueWidth(14),
-                    fontWeight: FontWeight.w500,
-                    color: ConstColor.kWhite
-                  ),),
-                  backgroundColor: ConstColor.kBlue65,
-                ),
-              )
-            ]),
+            padding: EdgeInsets.only(
+              top: getUniqueHeight(16),
+            ),
+            child: Stack(
+              children: [
+                Image.asset(image),
+                Positioned(
+                  right: getUniqueWidth(16),
+                  bottom: getUniqueHeight(8),
+                  child: Chip(
+                    label: Text(
+                      "\$ $cost",
+                      style: TextStyle(
+                        fontSize: getUniqueWidth(14),
+                        fontWeight: FontWeight.w500,
+                        color: ConstColor.kWhite,
+                      ),
+                    ),
+                    backgroundColor: ConstColor.kBlue65,
+                  ),
+                )
+              ],
+            ),
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.vertical(
@@ -71,23 +82,26 @@ class CourseCard extends StatelessWidget {
                 Text(
                   addTime,
                   style: TextStyle(
-                      color: ConstColor.kGreen5B,
-                      fontSize: getUniqueWidth(12),
-                      fontWeight: FontWeight.w500),
+                    color: ConstColor.kGreen5B,
+                    fontSize: getUniqueWidth(12),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   title,
                   style: TextStyle(
-                      fontSize: getUniqueWidth(24),
-                      fontWeight: FontWeight.w500),
+                    fontSize: getUniqueWidth(24),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                 courseDescription,
+                  courseDescription,
                   style: TextStyle(
-                      fontSize: getUniqueWidth(14),
-                      fontWeight: FontWeight.w400),
+                    fontSize: getUniqueWidth(14),
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),
