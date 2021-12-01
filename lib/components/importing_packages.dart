@@ -16,6 +16,9 @@ export 'package:course/widgets/buttons/text_button.dart';
 // SCREENS
 export 'package:course/screens/course/components/tab_button.dart';
 export 'package:course/screens/home/course/course_main_page.dart';
+export 'package:course/screens/home/settings/settings_page.dart';
+export 'package:course/screens/home/profile/profile_page.dart';
+export 'package:course/screens/course/home_screen.dart';
 export 'package:course/screens/course/home_page.dart';
 export 'package:course/screens/course/result_page.dart';
 export 'package:course/screens/course/search_result_page.dart';
@@ -31,6 +34,7 @@ export 'package:course/screens/onboarding/components/custom_image.dart';
 export 'package:course/screens/onboarding/intro_page.dart';
 export 'package:course/screens/personal/addpayment_nopayment_page.dart';
 export 'package:course/screens/personal/saved_notsaved_page.dart';
+
 
 // SERVICES
 export 'package:course/services/cloud/user_cloud_service.dart';

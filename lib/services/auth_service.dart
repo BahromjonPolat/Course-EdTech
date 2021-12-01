@@ -4,7 +4,6 @@ abstract class AuthService {
   Future<User> signInWithEmailAndPassword(String email, String password);
 
   Future createUserWithEmailAndPassword(
-    String name,
     String email,
     String password,
   );
@@ -19,32 +18,13 @@ class AuthMethods extends AuthService {
 
   @override
   Future createUserWithEmailAndPassword(
-    String name,
     String email,
     String password,
   ) async {
     print('AuthMethods.createUserWithEmailAndPassword. created user');
-
-    UserCredential _credential = await _auth
-        .createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    )
-        .whenComplete(() {
-      print('AuthMethods.createUserWithEmailAndPassword. when completed');
-
-      UserModel userModel = UserModel(
-        _auth.currentUser!.uid,
-        name,
-        email,
-        password,
-        "default",
-      );
-      CloudStoreService service = CloudStoreMethods();
-      service.setUserData(userModel);
-    });
-
-    print("Email: "+ _credential.user!.email.toString());
+    await _auth
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return _auth.currentUser!.uid;
   }
 
   @override

@@ -38,7 +38,7 @@ class SearchResultPage extends StatelessWidget {
                     Container(
                       width: getUniqueWidth(287),
                       padding: EdgeInsets.zero,
-                      child: TextFieldMark(hintText: "Search course"),
+                      child: TextFieldMark(hintText: "Search course",check: false),
                     ),
                   ],
                 ),

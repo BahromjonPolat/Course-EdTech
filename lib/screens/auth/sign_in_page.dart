@@ -11,11 +11,12 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final AuthService _authService = AuthMethods();
+  bool eye = false;
 
-  final finalKey = GlobalKey();
+  final _finalKey = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailcontroller = TextEditingController();
-
   final TextEditingController _passwordcontroller = TextEditingController();
 
   @override
@@ -23,104 +24,108 @@ class _SignInPageState extends State<SignInPage> {
     SizeConfig().init(context);
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: getUniqueHeight(253),
-              margin: EdgeInsets.only(
-                  top: getUniqueHeight(96), bottom: getUniqueHeight(16)),
-              child: Image.asset(ImagePath.login),
-            ),
-            Container(
+        child: Form(
+          key:_formKey,
+          child: Column(
+            children: [
+              Container(
+                height: getUniqueHeight(253),
                 margin: EdgeInsets.only(
-                    left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
-                height: getUniqueHeight(32),
-                width: getUniqueWidth(341),
-                child: returnText("Log in", getUniqueHeight(24),
-                    FontWeight.w500, ConstColor.dark)),
-            Container(
-                margin: EdgeInsets.only(
-                    left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
-                height: getUniqueHeight(21),
-                width: getUniqueWidth(341),
-                child: returnText("Log in with social networks",
-                    getUniqueHeight(14), FontWeight.w400, ConstColor.darkGrey)),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: getUniqueWidth(131.5), right: getUniqueWidth(116.93)),
-              child: SizedBox(
-                width: SizeConfig.screenWidth / 2.60,
-                height: SizeConfig.screenHeight / 20.3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    svgIconsMethod(IconPath.facebook),
-                    svgIconsMethod(IconPath.instagram),
-                    svgIconsMethod(IconPath.google),
-                  ],
+                    top: getUniqueHeight(96), bottom: getUniqueHeight(16)),
+                child: Image.asset(ImagePath.login),
+              ),
+              Container(
+                  margin: EdgeInsets.only(
+                      left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
+                  height: getUniqueHeight(32),
+                  width: getUniqueWidth(341),
+                  child: returnText("Log in", getUniqueHeight(24),
+                      FontWeight.w500, ConstColor.dark)),
+              Container(
+                  margin: EdgeInsets.only(
+                      left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
+                  height: getUniqueHeight(21),
+                  width: getUniqueWidth(341),
+                  child: returnText("Log in with social networks",
+                      getUniqueHeight(14), FontWeight.w400, ConstColor.darkGrey)),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: getUniqueWidth(131.5), right: getUniqueWidth(116.93)),
+                child: SizedBox(
+                  width: SizeConfig.screenWidth / 2.60,
+                  height: SizeConfig.screenHeight / 20.3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      svgiconsMethod(IconPath.facebook),
+                      svgiconsMethod(IconPath.instagram),
+                      svgiconsMethod(IconPath.google),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(
-                getUniqueHeight(16),
+              Padding(
+                padding: EdgeInsets.all(
+                  getUniqueHeight(16),
+                ),
+                child: currentTextform("Email", _emailcontroller, TextInputType.emailAddress, ),
               ),
-              child: currentTextform("Email", _emailcontroller),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getUniqueWidth(16),
-              ),
-              child: currentTextform(
-                "Password",
-                _passwordcontroller,
-                Icons.remove_red_eye,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getUniqueWidth(122),
-                vertical: getUniqueHeight(16),
-              ),
-              child: InkWell(
-                child: returnText(
-                    "Forgot Password?",
-                    getUniqueHeight(14),
-                    FontWeight.w500,
-                    ConstColor.darkGrey),
-                onTap: () {},
-              ),
-            ),
-            InkWell(
-              child: Container(
-                  alignment: Alignment.center,
-                  height: getUniqueHeight(56),
-                  width: getUniqueWidth(343),
-                  margin:
-                      EdgeInsets.only(bottom: getUniqueHeight(16)),
-                  decoration: BoxDecoration(
-                    color: ConstColor.kOrangeE35,
-                    borderRadius: BorderRadius.circular(16),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getUniqueWidth(16),
+                ),
+                child: currentTextform(
+                  "Password",
+                    _passwordcontroller,
+                    TextInputType.visiblePassword,
+                    eye ?  Icons.remove_red_eye_outlined: Icons.remove_red_eye,
                   ),
-                  child: returnText("Log in", getUniqueHeight(16),
-                      FontWeight.w500, ConstColor.kWhite)),
-              onTap: _onSignInButtonPressed,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                 getUniqueWidth(155),
-                0,
-                getUniqueWidth(155),
-                getUniqueHeight(69),),
-              child: InkWell(
-                child: returnText("Sign up", SizeConfig.screenHeight / 58,
-                    FontWeight.w500, ConstColor.darkGrey),
-                onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const SignUpPage()));
-                },
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getUniqueWidth(122),
+                  vertical: getUniqueHeight(16),
+                ),
+                child: InkWell(
+                  child: returnText(
+                      "Forgot Password?",
+                      getUniqueHeight(14),
+                      FontWeight.w500,
+                      ConstColor.darkGrey),
+                  onTap: () {},
+                ),
+              ),
+              InkWell(
+                child: Container(
+                    alignment: Alignment.center,
+                    height: getUniqueHeight(56),
+                    width: getUniqueWidth(343),
+                    margin:
+                        EdgeInsets.only(bottom: getUniqueHeight(16)),
+                    decoration: BoxDecoration(
+                      color: ConstColor.kOrangeE35,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: returnText("Log in", getUniqueHeight(16),
+                        FontWeight.w500, ConstColor.kWhite)),
+                onTap: _onSignInButtonPressed,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                   getUniqueWidth(155),
+                  0,
+                  getUniqueWidth(155),
+                  getUniqueHeight(69),),
+                child: InkWell(
+                  child: returnText("Sign up", SizeConfig.screenHeight / 58,
+                      FontWeight.w500, ConstColor.darkGrey),
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -141,10 +146,30 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   //Textform return qiluvchi Metod
-  TextFormField currentTextform(String text, TextEditingController controller,
+  TextFormField currentTextform(
+      String text,
+      TextEditingController controller,
+      TextInputType textInputType,
       [var icons]) {
     return TextFormField(
+
+      validator: (text) {
+        if (textInputType == TextInputType.emailAddress) {
+          if (!RegExp(
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              .hasMatch(controller.text)) {
+            return "Email xato";
+          }
+        }
+        else {
+          if (text!.length < 4) {
+           return "4 ta belgidan kam bo'lmasin";
+       }
+        }
+      },
       controller: controller,
+      keyboardType: textInputType,
+      obscureText: textInputType == TextInputType.visiblePassword ? !eye: false,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: GoogleFonts.rubik(
@@ -152,7 +177,10 @@ class _SignInPageState extends State<SignInPage> {
             fontWeight: FontWeight.w400,
             color: ConstColor.kDarkGrey),
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            eye = !eye;
+            setState(() {});
+          },
           icon: Icon(
             icons,
             color: ConstColor.kDarkGrey,
@@ -167,9 +195,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   //Svg iconlarni Inkwell ichida return qiladigan metod
-  svgIconsMethod(dynamic svgPicture) {
+  svgiconsMethod(dynamic Svgpicture) {
     return InkWell(
-      child: SvgPicture.asset(svgPicture),
+      child: SvgPicture.asset(Svgpicture),
     );
   }
 
@@ -177,23 +205,24 @@ class _SignInPageState extends State<SignInPage> {
     String email = _emailcontroller.text.trim();
     String password = _passwordcontroller.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
-      Fluttertoast.showToast(msg: "Please, Fill all fields");
-      return;
-    }
-    try {
-      await _authService
-          .signInWithEmailAndPassword(email, password)
-          .whenComplete(() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      try {
+        await _authService.signInWithEmailAndPassword(email, password);
+        Fluttertoast.showToast(msg: "Successfully");
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (_) => const HomePage(),
+            builder: (_) => HomePage(),
           ),
         );
-      });
-    } catch (e) {
-      debugPrint(e.toString());
+      } catch (e) {
+        Fluttertoast.showToast(msg: "E-mail yoki password xato !", textColor: Colors.red);
+        debugPrint(e.toString());
+        _emailcontroller.clear();
+        _passwordcontroller.clear();
+      }
     }
   }
 }
