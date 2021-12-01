@@ -72,7 +72,7 @@ class SavedAndPage extends StatelessWidget {
             SizedBox(
               height: getUniqueHeight(8),
             ),
-            Container(
+            SizedBox(
               height: getUniqueHeight(42),
               width: getUniqueWidth(190),
               child: CustomTextWidget(

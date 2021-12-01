@@ -54,9 +54,9 @@ class _SignInPageState extends State<SignInPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    svgiconsMethod(IconPath.facebook),
-                    svgiconsMethod(IconPath.instagram),
-                    svgiconsMethod(IconPath.google),
+                    svgIconsMethod(IconPath.facebook),
+                    svgIconsMethod(IconPath.instagram),
+                    svgIconsMethod(IconPath.google),
                   ],
                 ),
               ),
@@ -116,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                 child: returnText("Sign up", SizeConfig.screenHeight / 58,
                     FontWeight.w500, ConstColor.darkGrey),
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const SignUpPage()));
                 },
               ),
             ),
@@ -167,9 +167,9 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   //Svg iconlarni Inkwell ichida return qiladigan metod
-  svgiconsMethod(dynamic Svgpicture) {
+  svgIconsMethod(dynamic svgPicture) {
     return InkWell(
-      child: SvgPicture.asset(Svgpicture),
+      child: SvgPicture.asset(svgPicture),
     );
   }
 
@@ -188,7 +188,7 @@ class _SignInPageState extends State<SignInPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (_) => HomePage(),
+            builder: (_) => const HomePage(),
           ),
         );
       });
