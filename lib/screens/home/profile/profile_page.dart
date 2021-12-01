@@ -1,4 +1,7 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/screens/personal/addpayment_nopayment_page.dart';
+import 'package:course/screens/personal/saved_notsaved_page.dart';
+import 'package:course/widgets/buttons/text_button.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -29,7 +32,9 @@ class ProfilePage extends StatelessWidget {
               border: Border.all(color: Colors.blue, width: 5),
               borderRadius: BorderRadius.circular(90),
               color: ConstColor.kLightGrey),
-          child: Image.asset(ImagePath.profile),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(getUniqueWidth(90.0)),
+              child: Image.asset(ImagePath.profile)),
         ),
         buttonMethod("Your Courses", context, nextPage: OwnersCoursesPage()),
         // Keyingi Pageni yozib qo'yish kerak
@@ -44,68 +49,21 @@ class ProfilePage extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: ConstColor.kWhite,
-      elevation: 0,
-      centerTitle: true,
-      title: Text(
-        "Profile",
-        style: GoogleFonts.rubik(
-            fontSize: getUniqueHeight(24),
-            fontWeight: FontWeight.w500,
-            color: ConstColor.dark),
-      ),
-      leading: Padding(
-        padding: EdgeInsets.only(left: getUniqueWidth(17)),
-        child: InkWell(
-          child: SvgPicture.asset(IconPath.out_back),
-      appBar: AppBar(
         backgroundColor: ConstColor.kWhite,
         elevation: 0,
         centerTitle: true,
         title: Text(
           "Profile",
           style: GoogleFonts.rubik(
-            fontSize: getUniqueHeight(24),
-            fontWeight: FontWeight.w500,
-            color: ConstColor.dark,
-          ),
+              fontSize: getUniqueHeight(24),
+              fontWeight: FontWeight.w500,
+              color: ConstColor.dark),
         ),
         leading: Padding(
-          padding: EdgeInsets.only(
-            left: getUniqueWidth(17),
-          ),
-          child: InkWell(
-            child: SvgPicture.asset(
-              IconPath.out_back,
-            ),
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            margin:
-                EdgeInsets.only(top: getUniqueHeight(53), left: getUniqueWidth(3.19), right: getUniqueWidth(3.19), bottom: getUniqueHeight(50.75)),
-            height: 150.0,
-            width: 148.99,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.blue, width: 5),
-                borderRadius: BorderRadius.circular(90),
-                color: ConstColor.kLightGrey),
-            child: Image.asset(ImagePath.profile),
-          ),
-          buttonMethod("Your Courses",context),// Keyingi Pageni yozib qo'yish kerak
-          buttonMethod("Saved",context),// Keyingi Pageni yozib qo'yish kerak
-          buttonMethod("Payment",context),// Keyingi Pageni yozib qo'yish kerak
-          InkWell(
-            child: Text(
-              "Log out",
-              style: GoogleFonts.rubik(fontSize: getUniqueHeight(14),color: ConstColor.darkGrey,fontWeight: FontWeight.w500),
-            ),
-          )
-        ],
-      ),
-    );
+            padding: EdgeInsets.only(left: getUniqueWidth(17)),
+            child: InkWell(
+              child: SvgPicture.asset(IconPath.out_back),
+            )));
   }
 
   // Bu Keyingi pagega o'tadigan button uchun Metod
