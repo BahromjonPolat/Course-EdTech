@@ -205,13 +205,14 @@ class _SignUpPageState extends State<SignUpPage> {
             .createUserWithEmailAndPassword(name, email, password)
             .then((value) {
           Fluttertoast.showToast(msg: value.uid);
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           debugPrint("Password is weak");
         } else if (e.code == 'email-already-in-use') {
           debugPrint("email-already-in-use");
-          Fluttertoast.showToast(msg: "email-already-in-use" );
+          Fluttertoast.showToast(msg: "email-already-in-use",);
 
         }
       } catch (e) {
@@ -220,6 +221,7 @@ class _SignUpPageState extends State<SignUpPage> {
     }else{
        Fluttertoast.showToast(msg: "Please, fill all fields" );
        _passwordcontroller.clear();
+       debugPrint("Hello world");
     }
 
     // try {
