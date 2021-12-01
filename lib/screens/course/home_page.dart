@@ -1,5 +1,3 @@
-import 'package:course/screens/home/profile/profile_page.dart';
-import 'package:course/screens/home/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -11,208 +9,84 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _textController = TextEditingController();
-
-  int _currentIndex = 0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: _pageList()[_currentIndex],
-        bottomNavigationBar: _bottomNavBar());
-  }
-
-  SingleChildScrollView _buildBody() {
-    return SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16)),
-          child: Column(
-            children: [
-              // HEADER SECTION
-              SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: getUniqueWidth(16)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Hello,",
-                            style: TextStyle(
-                                fontSize: getUniqueWidth(16),
-                                fontWeight: FontWeight.w400),
-                          ),
-                          SizedBox(height: getUniqueHeight(16)),
-                          Text(
-                            "Juana Antonietta",
-                            style: TextStyle(
-                                fontSize: getUniqueWidth(32),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                      //Container(width: getUniqueWidth(48),  height: getUniqueHeight(48),color: Colors.grey,)
-                      SvgPicture.asset(
-                          'assets/icons/outlined_notification.svg',
-                          height: getUniqueWidth(48)),
-                    ],
-                  ),
-                ),
-              ),
-
-              //SEARCH FIELD
-              Container(
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.only(top: getUniqueHeight(6)),
-                child: TextFieldMark(hintText: "Search course"),
-              ),
-
-              // CATEGORIES SECTION
-              Container(
-                height: getUniqueHeight(24),
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.only(
-                    top: getUniqueHeight(12), bottom: getUniqueHeight(20)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomTextWidget("Category:"),
-                    _buildChip("#CSS"),
-                    _buildChip("#UX"),
-                    _buildChip("#Swift"),
-                    _buildChip("#UI"),
-                  ],
-                ),
-              ),
-
-              // COURSE CARD SECTION
-              SizedBox(
-                height: 500,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return CourseCard(
-                      color: index % 2 == 0
-                          ? ConstColor.kOrangeAccentF8
-                          : ConstColor.kBlueAccentE6,
-                      courseDescription: "Advanced mobile interface design",
-                      image: "assets/images/course_ui.png",
-                      addTime: "2 h 30 min",
-                      title: "UI",
-                      cost: "50",
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-  }
-
-  Widget _buildChip(text) {
-    return Container(
-      height: getUniqueHeight(24),
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(
-        vertical: getUniqueHeight(3),
-        horizontal: getUniqueWidth(11),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-            color: ConstColor.kWhite,
-            fontSize: getUniqueWidth(12),
-            fontWeight: FontWeight.w500),
-      ),
-      decoration: BoxDecoration(
-        color: ConstColor.kBlue65,
-        borderRadius: BorderRadius.circular(
-          getUniqueWidth(12),
-        ),
-      ),
+      resizeToAvoidBottomInset: true,
+      body: bodyList[currentIndex],
+      bottomNavigationBar: buildBottomNavBar(),
     );
   }
 
-  _searchFunction() {
-    if (_textController.text.isNotEmpty) {
-      _textController.clear();
-      debugPrint("Search: _searchText");
-    }
-  }
-
-  Container _bottomNavBar() => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(getUniqueWidth(16)),
-            topRight: Radius.circular(getUniqueWidth(16)),
-          ),
-          border: Border.all(width: 1, color: ConstColor.kGreyBE),
+  List<Widget> bodyList = [
+    HomeScreen(),
+    ProfilePage(),
+    SettingsPage()
+  ];
+  Widget buildBottomNavBar() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(getUniqueWidth(16)),
+          topRight: Radius.circular(getUniqueWidth(16)),
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(getUniqueWidth(15)),
-            topRight: Radius.circular(getUniqueWidth(15)),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (v) => setState(() => _currentIndex = v),
-            unselectedItemColor: ConstColor.kGreyBE,
-            selectedItemColor: ConstColor.kOrangeE35,
-            // unselectedLabelStyle: ,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.only(
-                        top: getUniqueHeight(18), bottom: getUniqueHeight(8)),
-                    child: SvgPicture.asset(
-                      IconPath.courses,
-                      color: _currentIndex == 0
-                          ? ConstColor.kOrangeE35
-                          : ConstColor.kGreyBE,
-                    ),
-                  ),
-                  label: "Courses"),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: EdgeInsets.only(
-                        top: getUniqueHeight(18), bottom: getUniqueHeight(8)),
-                    child: SvgPicture.asset(
-                      IconPath.profile,
-                      color: _currentIndex == 1
-                          ? ConstColor.kOrangeE35
-                          : ConstColor.kGreyBE,
-                    ),
-                  ),
-                  label: "Profile"),
-              BottomNavigationBarItem(
+        border: Border.all(width: 1, color: ConstColor.kGreyBE),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(getUniqueWidth(15)),
+          topRight: Radius.circular(getUniqueWidth(15)),
+        ),
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (v) => setState(() => currentIndex = v),
+          unselectedItemColor: ConstColor.kGreyBE,
+          selectedItemColor: ConstColor.kOrangeE35,
+          // unselectedLabelStyle: ,
+          items: [
+            BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(
                       top: getUniqueHeight(18), bottom: getUniqueHeight(8)),
                   child: SvgPicture.asset(
-                    IconPath.settings,
-                    color: _currentIndex == 2
+                    IconPath.courses,
+                    color: currentIndex == 0
                         ? ConstColor.kOrangeE35
                         : ConstColor.kGreyBE,
                   ),
                 ),
-                label: "Settings",
+                label: "Courses"),
+            BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.only(
+                      top: getUniqueHeight(18), bottom: getUniqueHeight(8)),
+                  child: SvgPicture.asset(
+                    IconPath.profile,
+                    color: currentIndex == 1
+                        ? ConstColor.kOrangeE35
+                        : ConstColor.kGreyBE,
+                  ),
+                ),
+                label: "Profile"),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(
+                    top: getUniqueHeight(18), bottom: getUniqueHeight(8)),
+                child: SvgPicture.asset(
+                  IconPath.settings,
+                  color: currentIndex == 2
+                      ? ConstColor.kOrangeE35
+                      : ConstColor.kGreyBE,
+                ),
               ),
-            ],
-          ),
+              label: "Settings",
+            ),
+          ],
         ),
-      );
-  
-  List<Widget> _pageList()=> [
-    _buildBody(),
-    ProfilePage(),
-    SettingsPage(),
-
-  ];
+      ),
+    );
+  }
 }
