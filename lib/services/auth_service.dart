@@ -24,12 +24,15 @@ class AuthMethods extends AuthService {
     String password,
   ) async {
     print('AuthMethods.createUserWithEmailAndPassword. created user');
-    await _auth
+
+    UserCredential _credential = await _auth
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
-    ).whenComplete(()  {
+    )
+        .whenComplete(() {
       print('AuthMethods.createUserWithEmailAndPassword. when completed');
+
       UserModel userModel = UserModel(
         _auth.currentUser!.uid,
         name,
@@ -38,8 +41,10 @@ class AuthMethods extends AuthService {
         "default",
       );
       CloudStoreService service = CloudStoreMethods();
-       service.setUserData(userModel);
+      service.setUserData(userModel);
     });
+
+    print("Email: "+ _credential.user!.email.toString());
   }
 
   @override
