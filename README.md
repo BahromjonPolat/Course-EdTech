@@ -4,11 +4,6 @@ In the first four pages we will explain you about our Application. You will simp
 
 
 **Packages we are using:**
-
-### Video Preview of Final UI
-
-![Preview](/intro.gif)
-
 ## Screens it contains:
 
 => Onboarding
