@@ -76,10 +76,10 @@ class _HomePageState extends State<HomePage> {
 
             // COURSE CARD SECTION
             SizedBox(
-              height: 500,
+              height: getUniqueHeight(500),
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.zero, 
                 itemCount: 3,
                 itemBuilder: (context, index) {
                   return CourseCard(
