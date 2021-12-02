@@ -40,6 +40,7 @@ export 'package:course/screens/personal/saved_notsaved_page.dart';
 export 'package:course/services/cloud/user_cloud_service.dart';
 export 'package:course/services/auth_service.dart';
 export 'package:course/services/cloud/course_service.dart';
+export 'package:course/services/cloud/category_service.dart';
 
 // COMPONENTS
 export 'package:course/components/icon_path.dart';
