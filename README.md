@@ -46,4 +46,8 @@ Now it contains all the screen, thanks for your love and support 🙏
 ![Preview](4.png)
 ![Preview](5.png)
 ![Preview](6.png)
+<<<<<<< HEAD
 ![Preview](7.png)
+=======
+![Preview](7.png)
+>>>>>>> 7aa7d7dfb46de2f5b74f44d1aa8ea1aba19afdb4

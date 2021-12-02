@@ -5,6 +5,9 @@ class Quiz {
   String? _answer;
   List<String>? _options;
 
+
+  Quiz(this._id, this._lessonId, this._question, this._answer, this._options);
+
   Quiz.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _lessonId = json['lessonId'];
