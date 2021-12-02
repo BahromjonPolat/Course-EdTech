@@ -87,7 +87,7 @@ class CourseCard extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                 SizedBox(height: getUniqueHeight(3)),
                 Text(
                   title,
                   style: TextStyle(
@@ -95,7 +95,7 @@ class CourseCard extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 8),
+                 SizedBox(height: getUniqueHeight(5.9)),
                 Text(
                   courseDescription,
                   style: TextStyle(

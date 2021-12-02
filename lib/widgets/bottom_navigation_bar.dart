@@ -19,9 +19,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           topLeft: Radius.circular(getUniqueWidth(16)),
           topRight: Radius.circular(getUniqueWidth(16)),
         ),
-        border: Border.all(width: 1, color: ConstColor.kGreyBE),
+        border: Border.all(
+          width: getUniqueWidth(1),
+          color: ConstColor.kGreyBE,
+        ),
       ),
-
       child: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(getUniqueWidth(15)),
