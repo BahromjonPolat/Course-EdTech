@@ -21,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
