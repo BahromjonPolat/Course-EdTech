@@ -2,12 +2,11 @@ import 'package:course/components/importing_packages.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldMark extends StatelessWidget {
-  //VoidCallback onPressed;
   String hintText;
+  bool? check;
 
   TextFieldMark({
-   // required this.onPressed,
-    required this.hintText,
+    required this.hintText, this.check,
     Key? key}) : super(key: key);
 
   final TextEditingController _textController = TextEditingController();
@@ -18,10 +17,11 @@ class TextFieldMark extends StatelessWidget {
     return TextField(
               controller: _textController,
               onChanged: (v) => _searchText = v,
+              onSubmitted: (v) {_searchFunction(context, check!);},
               cursorHeight: getUniqueHeight(21),
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  onPressed: _searchFunction,
+                  onPressed: (){},
                   icon: SvgPicture.asset(IconPath.search,
                       fit: BoxFit.none, height: 20),
                 ),
@@ -52,11 +52,12 @@ class TextFieldMark extends StatelessWidget {
             );
   }
 
-   _searchFunction() {
+   _searchFunction(context, bool check) {
+    print(context);
     if(_textController.text.isNotEmpty){
       _textController.clear();
-      debugPrint("Search: $_searchText  XXX");
-      //Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchResultPage()));
+      //debugPrint("Search: $_searchText  XXX");
+     if (check) Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchResultPage()));
     }
   }
 }

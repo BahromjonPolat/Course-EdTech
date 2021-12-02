@@ -10,10 +10,15 @@ export 'package:course/widgets/app_bar/app_bar.dart';
 export 'package:course/widgets/cards/course_card.dart';
 export 'package:course/widgets/cards/main_card.dart';
 export 'package:course/widgets/cards/small_card.dart';
+export 'package:course/widgets/buttons/text_button.dart';
+
 
 // SCREENS
 export 'package:course/screens/course/components/tab_button.dart';
 export 'package:course/screens/home/course/course_main_page.dart';
+export 'package:course/screens/home/settings/settings_page.dart';
+export 'package:course/screens/home/profile/profile_page.dart';
+export 'package:course/screens/course/home_screen.dart';
 export 'package:course/screens/course/home_page.dart';
 export 'package:course/screens/course/result_page.dart';
 export 'package:course/screens/course/search_result_page.dart';
@@ -27,11 +32,15 @@ export 'package:course/screens/onboarding/components/intro_page_layout.dart';
 export 'package:course/screens/onboarding/components/page_indicator.dart';
 export 'package:course/screens/onboarding/components/custom_image.dart';
 export 'package:course/screens/onboarding/intro_page.dart';
+export 'package:course/screens/personal/addpayment_nopayment_page.dart';
+export 'package:course/screens/personal/saved_notsaved_page.dart';
+
 
 // SERVICES
 export 'package:course/services/cloud/user_cloud_service.dart';
 export 'package:course/services/auth_service.dart';
 export 'package:course/services/cloud/course_service.dart';
+export 'package:course/services/cloud/category_service.dart';
 
 // COMPONENTS
 export 'package:course/components/icon_path.dart';

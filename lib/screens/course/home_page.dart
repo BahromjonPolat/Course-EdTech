@@ -1,5 +1,5 @@
-import 'package:course/screens/home/profile/profile_page.dart';
-import 'package:course/screens/home/settings/settings_page.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -11,8 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _textController = TextEditingController();
+  final CategoryService _categoryService = CategoryMethod();
 
+  final TextEditingController _textController = TextEditingController();
   int _currentIndex = 0;
 
   @override
@@ -26,106 +27,128 @@ class _HomePageState extends State<HomePage> {
 
   SingleChildScrollView _buildBody() {
     return SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16)),
-          child: Column(
-            children: [
-              // HEADER SECTION
-              SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: getUniqueWidth(16)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Hello,",
-                            style: TextStyle(
-                                fontSize: getUniqueWidth(16),
-                                fontWeight: FontWeight.w400),
-                          ),
-                          SizedBox(height: getUniqueHeight(16)),
-                          Text(
-                            "Juana Antonietta",
-                            style: TextStyle(
-                                fontSize: getUniqueWidth(32),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                      //Container(width: getUniqueWidth(48),  height: getUniqueHeight(48),color: Colors.grey,)
-                      SvgPicture.asset(
-                          'assets/icons/outlined_notification.svg',
-                          height: getUniqueWidth(48)),
-                    ],
-                  ),
-                ),
-              ),
-
-              //SEARCH FIELD
-              Container(
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.only(top: getUniqueHeight(6)),
-                child: TextFieldMark(hintText: "Search course"),
-              ),
-
-              // CATEGORIES SECTION
-              Container(
-                height: getUniqueHeight(24),
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.only(
-                    top: getUniqueHeight(12), bottom: getUniqueHeight(20)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16)),
+        child: Column(
+          children: [
+            // HEADER SECTION
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: getUniqueWidth(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomTextWidget("Category:"),
-                    _buildChip("#CSS"),
-                    _buildChip("#UX"),
-                    _buildChip("#Swift"),
-                    _buildChip("#UI"),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello,",
+                          style: TextStyle(
+                              fontSize: getUniqueWidth(16),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(height: getUniqueHeight(16)),
+                        Text(
+                          "Juana Antonietta",
+                          style: TextStyle(
+                              fontSize: getUniqueWidth(32),
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    //Container(width: getUniqueWidth(48),  height: getUniqueHeight(48),color: Colors.grey,)
+                    SvgPicture.asset('assets/icons/outlined_notification.svg',
+                        height: getUniqueWidth(48)),
                   ],
                 ),
               ),
+            ),
 
-              // COURSE CARD SECTION
-              SizedBox(
-                height: 500,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return CourseCard(
-                      color: index % 2 == 0
-                          ? ConstColor.kOrangeAccentF8
-                          : ConstColor.kBlueAccentE6,
-                      courseDescription: "Advanced mobile interface design",
-                      image: "assets/images/course_ui.png",
-                      addTime: "2 h 30 min",
-                      title: "UI",
-                      cost: "50",
-                    );
-                  },
-                ),
+            //SEARCH FIELD
+            Container(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.only(top: getUniqueHeight(6)),
+              child: TextFieldMark(hintText: "Search course"),
+            ),
+
+            // CATEGORIES SECTION
+            _showCategories(),
+
+            // COURSE CARD SECTION
+            SizedBox(
+              height: 500,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return CourseCard(
+                    color: index % 2 == 0
+                        ? ConstColor.kOrangeAccentF8
+                        : ConstColor.kBlueAccentE6,
+                    courseDescription: "Advanced mobile interface design",
+                    image: "assets/images/course_ui.png",
+                    addTime: "2 h 30 min",
+                    title: "UI",
+                    cost: "50",
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
+
+  Container _showCategories() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: getUniqueHeight(24),
+      padding: EdgeInsets.zero,
+      margin: EdgeInsets.only(
+          top: getUniqueHeight(12), bottom: getUniqueHeight(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomTextWidget("Category:"),
+          Flexible(
+              child: FutureBuilder(
+            future: _categoryService.getAllCategories(),
+            builder: (context, AsyncSnapshot<List<Category>> snap) {
+              if (snap.hasData) {
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                    itemCount: snap.data!.length,
+                    itemBuilder: (context, index) {
+                      Category category = snap.data![index];
+                      
+                      return _buildChip(category.name);
+                    });
+              }
+              else if (snap.hasError ) {
+                return CustomTextWidget("Error");
+              }
+
+              return const CupertinoActivityIndicator();
+            },
+          ))
+        ],
+      ),
+    );
   }
 
   Widget _buildChip(text) {
     return Container(
       height: getUniqueHeight(24),
       alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: getUniqueWidth(8.0)),
       padding: EdgeInsets.symmetric(
         vertical: getUniqueHeight(3),
         horizontal: getUniqueWidth(11),
       ),
       child: Text(
-        text,
+        "#$text",
         style: TextStyle(
             color: ConstColor.kWhite,
             fontSize: getUniqueWidth(12),
@@ -208,11 +231,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
-  
-  List<Widget> _pageList()=> [
-    _buildBody(),
-    ProfilePage(),
-    SettingsPage(),
 
-  ];
+  List<Widget> _pageList() => [
+        _buildBody(),
+        ProfilePage(),
+        SettingsPage(),
+      ];
 }

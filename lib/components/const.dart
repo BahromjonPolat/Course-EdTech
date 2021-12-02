@@ -19,4 +19,5 @@ class ConstColor {
   static const Color kDark = Color(0xFF3C3A36);
   static const Color kLightGrey = Color(0xffF8F2EE);
   static const Color nonActive = Color(0xffD5D4D4);
+  static const Color error = Color(0xffEF4949);
 }

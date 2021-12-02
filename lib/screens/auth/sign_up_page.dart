@@ -200,24 +200,23 @@ class _SignUpPageState extends State<SignUpPage> {
 
     if(_formKey.currentState!.validate()){
       _formKey.currentState!.save();
+      // USERNI TIZIMDA RO'YXATDAN O'TKAZISH
       try {
-        await _authService
-            .createUserWithEmailAndPassword(name, email, password)
-            .then((value) {
-          Fluttertoast.showToast(msg: value.uid);
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-        });
+        String uid = await _authService
+            .createUserWithEmailAndPassword(email, password);
+      // AGAR USER MUVAFFAQIYATLI RO'YXATDAN O'TSA MALUMOTLARINI MODELLAWTIRISH
+        UserModel userModel = UserModel(uid,name, email, password, "default");
 
-        String uid = FirebaseAuth.instance.currentUser!.uid;
-        UserModel user = UserModel(uid, name, email, password, "default");
+        CloudStoreService service = CloudStoreMethods();
+      // USER MALUMOTLARINI DB GA YOZISH
+        await service.setUserData(userModel);
 
-        await FirebaseFirestore.instance
-            .collection("EdTechUsers")
-            .doc(uid)
-            .set(user.toMap());
-
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => HomePage()));
+        Fluttertoast.showToast(msg: "User succesfuly registered");
+       // USERNI HOME SCREENGA YO'NALTIRISH
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+            (route) => false);
 
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -230,33 +229,11 @@ class _SignUpPageState extends State<SignUpPage> {
       } catch (e) {
         debugPrint("$e");
       }
-    } else {
-      Fluttertoast.showToast(msg: "Please, fill all fields");
-      _passwordcontroller.clear();
+    }else{
+       Fluttertoast.showToast(msg: "Please, fill all fields" );
+       _passwordcontroller.clear();
     }
 
-    // try {
-    //     await _authService
-    //         .createUserWithEmailAndPassword(name, email, password)
-    //         .then((value) {
-    //       Fluttertoast.showToast(msg: value.uid);
-    //     });
-    //   } on FirebaseAuthException catch (e) {
-    //     if (e.code == 'weak-password') {
-    //       debugPrint("Password is weak");
-    //     } else if (e.code == 'email-already-in-use') {
-    //       debugPrint("email-already-in-use");
-    //     }
-    //   } catch (e) {
-    //     debugPrint("e");
-    //   }
-
-
-    // if (name.isEmpty || email.isEmpty || password.isEmpty) {
-    //   Fluttertoast.showToast(msg: "Please, fill all fields" );
-    //   debugPrint("object");
-    //   return;
-    // }
 
 
   }
