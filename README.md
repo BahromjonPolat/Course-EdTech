@@ -1,4 +1,4 @@
-# E-Commerce Complate App - Flutter UI 
+# Course-EdTech-Flutter App ui
 
 In the first four pages we will explain you about our Application. You will simply go to the Next pages by clicking the Next button. In the next pages we will ask you to enter your Email and Password or you can register via Social Networks. We go into our application and adjust the settings. You can change the screen via the Bottomnavigationbar. Now it's your turn to select Courses. Select the course and start learning. 
 
