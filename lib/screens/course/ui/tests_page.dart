@@ -1,26 +1,65 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/services/cloud/quiz_service.dart';
 import 'package:flutter/cupertino.dart';
 
-class TestsPage extends StatelessWidget {
-  TestsPage({Key? key}) : super(key: key);
+class TestsPage extends StatefulWidget {
+  String lessonId;
 
+  TestsPage(this.lessonId, {Key? key}) : super(key: key);
+
+  @override
+  State<TestsPage> createState() => _TestsPageState();
+}
+
+class _TestsPageState extends State<TestsPage> {
   late double _width;
+
   late BuildContext _context;
+
+  final QuizService _service = QuizMethod();
+
+  late List _quizList;
+
+
   @override
   Widget build(BuildContext context) {
+
     _context = context;
-    _width = MediaQuery.of(context).size.width;
+    _width = MediaQuery
+        .of(context)
+        .size
+        .width;
+
     return SliverList(
       delegate: SliverChildListDelegate([
         SizedBox(height: getUniqueHeight(16.0)),
-        _setTestLayout(),
-        _setTestLayout(),
-        _setTestLayout(),
+        FutureBuilder(
+            future: _service.getQuizList(widget.lessonId),
+            builder: (context,AsyncSnapshot<List<Quiz>> snap) {
+          if (snap.hasData) {
+            _quizList =snap.data!;
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: snap.data!.length,
+                itemBuilder: (context, index) {
+                Quiz quiz = snap.data![index];
+              return _setTestLayout(quiz, index + 1);
+            });
+          }
+          else if (snap.hasError) {
+            return Text("Error");
+          }
+
+          return CupertinoActivityIndicator();
+        })
       ]),
     );
   }
 
-  Container _setTestLayout() => Container(
+
+  Container _setTestLayout(Quiz quiz, int index) =>
+      Container(
         height: getUniqueHeight(463.0),
         width: _width,
         margin: EdgeInsets.symmetric(vertical: getUniqueHeight(8.0)),
@@ -51,21 +90,24 @@ class TestsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      "Quiz 1",
+                      "Quiz ${index}",
                       color: ConstColor.kOrangeE35,
                       weight: FontWeight.w400,
                     ),
                     SizedBox(height: getUniqueHeight(4.0)),
-                    CustomTextWidget("Tags For Headers", size: 20.0),
+                    CustomTextWidget("quiz.question.toString()", size: 20.0),
                     SizedBox(height: getUniqueHeight(8.0)),
                     CustomTextWidget(
-                      _content,
+                      quiz.courseId,
                       weight: FontWeight.w400,
                       color: ConstColor.kDarkGrey,
                       lineHeight: 1.4,
                     ),
                     const Spacer(),
-                    CustomElevatedButton(onPressed: _onBeginButtonPressed, label: "Begin"),
+                    CustomElevatedButton(
+                        onPressed: (){
+                          _onBeginButtonPressed(_quizList);
+                        }, label: "Begin"),
                   ],
                 ),
               ),
@@ -74,8 +116,8 @@ class TestsPage extends StatelessWidget {
         ),
       );
 
-  void _onBeginButtonPressed() {
-    Navigator.push(_context, MaterialPageRoute(builder: (_)=> QuizPage()));
+  void _onBeginButtonPressed(List list) {
+    Navigator.push(_context, MaterialPageRoute(builder: (_) => QuizPage(list)));
   }
 
   final String _content =

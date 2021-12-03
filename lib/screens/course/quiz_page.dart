@@ -2,13 +2,23 @@ import 'package:course/components/importing_packages.dart';
 import 'package:flutter/cupertino.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({Key? key}) : super(key: key);
+  List quizList;
+
+  QuizPage(this.quizList, {Key? key}) : super(key: key);
 
   @override
   _QuizPageState createState() => _QuizPageState();
 }
 
 class _QuizPageState extends State<QuizPage> {
+  late List _quizList;
+
+  @override
+  void initState() {
+    super.initState();
+    _quizList = widget.quizList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
           SizedBox(height: getUniqueHeight(8.0)),
           CustomTextWidget(
-            "Which tag for\n the biggest header?",
+            "quiz.question.toString()",
             lineHeight: 1.4,
             size: 24.0,
             textAlign: TextAlign.center,
@@ -57,11 +67,11 @@ class _QuizPageState extends State<QuizPage> {
             child: Image.asset(ImagePath.testQuestion),
           ),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton(),
+          _setButton("A. {quiz.option[0]}"),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton(),
+          _setButton("B. {quiz.option[1]}"),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton(),
+          _setButton("C. {quiz.option[2]}"),
           SizedBox(height: getUniqueHeight(67.0)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(17.0)),
@@ -72,9 +82,9 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  OutlinedButton _setButton() => OutlinedButton(
+  OutlinedButton _setButton(String option) => OutlinedButton(
         onPressed: () {},
-        child: CustomTextWidget("A. Hello"),
+        child: CustomTextWidget(option),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: _setBorderRadius(),
@@ -87,6 +97,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
       );
+
 
   Border _setBorder() => Border.all(width: 0.5, color: ConstColor.kDarkGrey);
 

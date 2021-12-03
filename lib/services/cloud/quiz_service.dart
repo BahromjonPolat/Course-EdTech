@@ -18,11 +18,13 @@ class QuizMethod extends QuizService {
   Future<List<Quiz>> getQuizList(String lessonId) async {
     QuerySnapshot<Map<String, dynamic>> quizList = await _fireStore
         .collection("EdTechQuizzes")
-        .where('lessonId', isEqualTo: lessonId)
+        .where('courseId', isEqualTo: lessonId)
         .get();
+
 
     List<Quiz> quizzes =
         quizList.docs.map((e) => Quiz.fromJson(e.data())).toList();
+
 
     return quizzes;
   }

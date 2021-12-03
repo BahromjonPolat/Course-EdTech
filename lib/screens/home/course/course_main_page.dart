@@ -139,7 +139,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
 
   List<Widget> pages() => [
         IntroductionPage(_lesson),
-        TestsPage(),
-        DiscussPage(),
+        TestsPage(_lesson.courseId),
+        const DiscussPage(),
       ];
 }
