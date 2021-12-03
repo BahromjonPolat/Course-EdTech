@@ -1,8 +1,4 @@
-import 'package:course/components/image_path.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:course/widgets/text/text_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentAndPage extends StatelessWidget {
   PaymentAndPage({Key? key}) : super(key: key);

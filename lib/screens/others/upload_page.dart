@@ -1,8 +1,3 @@
-
-import 'package:course/screens/others/add_category.dart';
-import 'package:course/screens/others/add_lesson_page.dart';
-import 'package:course/screens/others/add_quiz_page.dart';
-import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
 class UploadingPage extends StatefulWidget {

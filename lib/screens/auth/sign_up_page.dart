@@ -1,5 +1,3 @@
-import 'package:course/services/auth_service.dart';
-
 import '../../components/importing_packages.dart';
 
 class SignUpPage extends StatefulWidget {

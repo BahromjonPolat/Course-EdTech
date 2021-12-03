@@ -1,7 +1,4 @@
-import 'package:course/screens/onboarding/components/custom_image.dart';
-import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/painting.dart';
 
 class IntroPageCenterLayout extends StatelessWidget {
   String imageAsset;

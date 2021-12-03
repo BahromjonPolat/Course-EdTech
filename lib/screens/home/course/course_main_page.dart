@@ -1,9 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/course/components/tab_button.dart';
-import 'package:course/screens/course/ui/introduction.dart';
-import 'package:course/screens/course/ui/tests_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CourseMainPage extends StatefulWidget {
   const CourseMainPage({Key? key}) : super(key: key);

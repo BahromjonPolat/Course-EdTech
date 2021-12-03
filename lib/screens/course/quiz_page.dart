@@ -1,6 +1,5 @@
 import 'package:course/components/importing_packages.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);

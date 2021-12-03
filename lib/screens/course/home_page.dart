@@ -1,6 +1,4 @@
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 
 class HomePage extends StatefulWidget {

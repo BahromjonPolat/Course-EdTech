@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:course/components/importing_packages.dart';
 
 class AddingCategory extends StatefulWidget {
   const AddingCategory({Key? key}) : super(key: key);

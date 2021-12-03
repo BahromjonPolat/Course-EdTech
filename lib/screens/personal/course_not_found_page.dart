@@ -1,5 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/material.dart';
 
 class CourseNotFound extends StatelessWidget {
   const CourseNotFound({Key? key}) : super(key: key);
