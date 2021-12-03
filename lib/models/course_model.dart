@@ -3,6 +3,7 @@ class Course {
   String? _title;
   String? _subtitle;
   String? _categoryId;
+  String? _about;
   String? _authorId;
   String? _imageUrl;
   int? _duration;
@@ -13,6 +14,7 @@ class Course {
     this._id,
     this._title,
     this._subtitle,
+    this._about,
     this._categoryId,
     this._authorId,
     this._imageUrl,
@@ -28,9 +30,10 @@ class Course {
     _imageUrl = json['imageUrl'];
     _duration = json['duration'];
     _price = json['price'];
-    _timestamp = json['timestamp'];
+    _timestamp = json['timestamp'].toDate();
     _categoryId = json['categoryId'];
     _authorId = json['authorId'];
+    _about = json['about'];
   }
 
   Map<String, dynamic> toMap() => {
@@ -43,6 +46,7 @@ class Course {
         'timestamp': _timestamp,
         'authorId': _authorId,
         'categoryId': _categoryId,
+        'about': _about,
       };
 
   String get id => _id!;
@@ -62,4 +66,6 @@ class Course {
   String get categoryId => _categoryId!;
 
   String get authorId => _authorId!;
+
+  String get about => _about!;
 }

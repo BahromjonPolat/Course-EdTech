@@ -10,179 +10,120 @@ class AddingLessonPage extends StatefulWidget {
 }
 
 class _AddingLessonPageState extends State<AddingLessonPage> {
-  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   final Uuid _uuid = const Uuid();
-  String? _categoryId = '';
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _amountController = TextEditingController();
-  final TextEditingController _percentController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _imageController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
 
-  // String _categoryName = "Item";
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _getCategories().then((value) {
-  //     _category = value[0];
-  //     setState(() {
-  //     });
-  //   });
-  // }
+  String _currentId = "";
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _dropdownButton(),
-          _setLessonInfoFields(),
-
-          // _buildDropdownButton()
-        ],
-      ),
-    );
+    return _buildBody();
   }
 
-  _setLessonInfoFields() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: _setInputDecoration("Title"),
-            ),
-            TextField(
-              controller: _descriptionController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              maxLines: 6,
-              textCapitalization: TextCapitalization.sentences,
-              decoration: _setInputDecoration("Description"),
-            ),
-            TextField(
-              controller: _imageController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              // textCapitalization: TextCapitalization.sentences,
-              decoration: _setInputDecoration("Image url"),
-            ),
-            ElevatedButton(
-                onPressed: _onAddButtonPressed,
-                child: CustomTextWidget("Add Lesson"))
-          ],
+  SingleChildScrollView _buildBody() => SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16.0)),
+          child: Column(
+            children: [
+              _showCourses(),
+              TextFormField(
+                controller: _titleController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: _setInputDecoration("Title"),
+              ),
+              TextFormField(
+                controller: _contentController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                maxLines: 10,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: _setInputDecoration("Content"),
+              ),
+
+              const SizedBox(height: 24.0),
+              CustomElevatedButton(onPressed: _onAddButtonPressed, label: "Add Lesson")
+            ],
+          ),
         ),
       );
-
-  void _onAddButtonPressed() async {
-    String id = _uuid.v4();
-    String title = _titleController.text;
-    int amount = 24;
-    String description = _descriptionController.text;
-    String imageUrl = _imageController.text;
-    double percent = 97;
-    double price = 300;
-
-    if (title.isEmpty || description.isEmpty || imageUrl.isEmpty) {
-      Fluttertoast.showToast(msg: "Plesae, fill all fields");
-      return;
-    }
-
-    Course course = Course(
-      id,
-      title,
-      'subtitle',
-      'categoryId',
-      'authorId',
-      imageUrl,
-      180,
-      32.0,
-      DateTime.now(),
-    );
-    await _fireStore
-        .collection('VideoLessonCourseList')
-        .doc(id)
-        .set(course.toMap())
-        .whenComplete(() {
-      Fluttertoast.showToast(msg: "Lesson was added");
-      _titleController.clear();
-      _descriptionController.clear();
-      _imageController.clear();
-    });
-  }
 
   InputDecoration _setInputDecoration(String hint) => InputDecoration(
         hintText: hint,
       );
 
-  DropdownButton<Category> _buildDropdownButton() {
-    return DropdownButton<Category>(
-      // value: _category,
-      items: [
-        _setDropDownMenuItem(Category("1", "Programming", "_imageUrl")),
-        _setDropDownMenuItem(Category("2", "Design", "_imageUrl")),
-        _setDropDownMenuItem(Category("3", "SMM", "_imageUrl")),
-      ],
-      onChanged: (v) {
-        // _category = v;
-      },
-    );
-  }
+  SizedBox _showCourses() => SizedBox(
+        height: 36.0,
+        child: FutureBuilder(
+          future: _getCourseList(),
+          builder: (context, AsyncSnapshot<List<Course>> snap) {
+            if (snap.hasData) {
+              return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snap.data!.length,
+                  itemBuilder: (context, index) {
+                    Course lesson = snap.data![index];
+                    return CustomTextButton(
+                      color: _currentId == lesson.id
+                          ? ConstColor.kOrangeE35
+                          : ConstColor.darkGrey,
+                      onPressed: () {
+                        setState(() {
+                          _currentId = lesson.id;
+                        });
+                      },
+                      label: lesson.title,
+                    );
+                  });
+            }
+            if (snap.hasError) {
+              return CustomTextWidget("Error");
+            }
 
-  DropdownMenuItem<Category> _setDropDownMenuItem(Category category) =>
-      DropdownMenuItem(
-        child: CustomTextWidget("Hello"),
-        value: category,
-        onTap: () {},
+            return const CupertinoActivityIndicator();
+          },
+        ),
       );
 
-  _dropdownButton() => FutureBuilder(
-      future: _getCategories(),
-      builder: (context, AsyncSnapshot<List<Category>> snap) {
-        if (snap.hasData) {
-          // _category = snap.data![0];
-          return Row(
-            children: List.generate(snap.data!.length, (index) {
-              Category category = snap.data![index];
-              return TextButton(
-                  style: TextButton.styleFrom(
-                    primary: _categoryId == category.id
-                        ? ConstColor.darkGrey
-                        : ConstColor.kOrangeE35,
-                    // side: BorderSide()
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _categoryId = category.id;
-                    });
-                  },
-                  child: Text(category.name));
-            }),
-          );
-        } else if (snap.hasError) {
-          return Center(child: CustomTextWidget("Error"));
-        }
-
-        return const Center(child: CupertinoActivityIndicator(radius: 24.0));
-      });
-
-  Future<List<Category>> _getCategories() async {
-    QuerySnapshot categories = await _fireStore
-        .collection('VideoLessonCategories')
-        .orderBy('timestamp')
-        .get();
+  Future<List<Course>> _getCourseList() async {
+    QuerySnapshot categories =
+        await FirebaseFirestore.instance.collection('EdTechCourses').get();
 
     return categories.docs
-        .map((e) => Category.fromJson({
-              'id': e['id'],
-              'name': e['name'],
-              'imageUrl': e['imageUrl'],
-            }))
+        .map((e) => Course.fromJson(e.data() as Map<String, dynamic>))
         .toList();
+  }
+
+  void _onAddButtonPressed() async {
+    String id = _uuid.v4();
+    String title = _titleController.text.trim();
+    String content = _contentController.text;
+
+    if (_currentId.isEmpty || title.isEmpty || content.isEmpty) {
+      Fluttertoast.showToast(msg: "Please, fill all fields");
+      return;
+    }
+
+    Lesson lesson = Lesson(
+      id,
+      title,
+      content,
+      _currentId,
+      'scrum',
+      DateTime.now(),
+    );
+
+    FirebaseFirestore.instance
+        .collection("EdTechLessons")
+        .doc(id)
+        .set(lesson.toMap())
+        .whenComplete(() {
+          Fluttertoast.showToast(msg: "Lesson was added");
+          _currentId = "";
+          _titleController.clear();
+          _contentController.clear();
+    });
   }
 }

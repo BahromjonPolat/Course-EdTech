@@ -3,7 +3,7 @@ class Lesson {
   String? _title;
   String? _content;
   String? _courseId;
-  String? _videoUrl;
+  String? _imageUrl;
   DateTime? _timestamp;
 
   Lesson(
@@ -11,7 +11,7 @@ class Lesson {
     this._title,
     this._content,
     this._courseId,
-    this._videoUrl,
+    this._imageUrl,
     this._timestamp,
   );
 
@@ -20,7 +20,7 @@ class Lesson {
     _title = json['title'];
     _content = json['content'];
     _courseId = json['courseId'];
-    _videoUrl = json['videoUrl'];
+    _imageUrl = json['imageUrl'];
     _timestamp = json['timestamp'];
   }
 
@@ -29,11 +29,11 @@ class Lesson {
         'title': _title,
         'content': _content,
         'courseId': _courseId,
-        'videoUrl': _videoUrl,
+        'imageUrl': _imageUrl,
         'timestamp': _timestamp,
       };
 
-  String get videoUrl => _videoUrl!;
+  String get imageUrl => _imageUrl!;
 
   String get courseId => _courseId!;
 

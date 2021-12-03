@@ -1,9 +1,10 @@
 
-import 'package:course/screens/others/add_category.dart';
-import 'package:course/screens/others/add_lesson_page.dart';
-import 'package:course/screens/others/add_quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
+
+import 'add_course_page.dart';
+import 'add_lesson_page.dart';
+import 'add_quiz_page.dart';
 
 class UploadingPage extends StatefulWidget {
   const UploadingPage({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _UploadingPageState extends State<UploadingPage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: _buildAppBar(),
       body: _getBodyList()[_currentIndex],
@@ -35,12 +37,12 @@ class _UploadingPageState extends State<UploadingPage> {
         ),
       );
 
-  final List<String> _titles = ["Add Category", "Add Lesson", "Upload Video"];
+  final List<String> _titles = ["Add Course", "Add Lesson", "Add Quiz"];
 
   List<Widget> _getBodyList() => [
-        const AddingCategory(),
+        const AddingCourse(),
         const AddingLessonPage(),
-        const UploadingVideoPage(),
+        const AddingQuizPage(),
       ];
 
   BottomNavigationBar _bottomNavigationBar() => BottomNavigationBar(
@@ -55,15 +57,15 @@ class _UploadingPageState extends State<UploadingPage> {
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.category),
-      label: "Category",
+      label: "Course",
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.play_lesson),
       label: "Lesson",
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.video_call_outlined),
-      label: "Video",
+      icon: Icon(Icons.quiz),
+      label: "Quiz",
     ),
   ];
 }
