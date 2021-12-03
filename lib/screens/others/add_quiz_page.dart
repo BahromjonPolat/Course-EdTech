@@ -1,6 +1,5 @@
 import 'package:course/components/importing_packages.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class AddingQuizPage extends StatefulWidget {
   const AddingQuizPage({Key? key}) : super(key: key);

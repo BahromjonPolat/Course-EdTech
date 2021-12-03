@@ -1,7 +1,4 @@
-import 'package:course/components/image_path.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:course/widgets/app_bar/app_bar.dart';
-import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({Key? key}) : super(key: key);

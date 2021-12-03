@@ -25,15 +25,23 @@ export 'package:course/screens/course/search_result_page.dart';
 export 'package:course/screens/course/ui/product_detail_page.dart';
 export 'package:course/screens/course/ui/owners_courses.dart';
 export 'package:course/screens/course/choose_lessons_course.dart';
+export 'package:course/screens/course/ui/introduction.dart';
+export 'package:course/screens/course/ui/tests_page.dart';
+export 'package:course/screens/course/quiz_page.dart';
 export 'package:course/screens/auth/sign_in_page.dart';
 export 'package:course/screens/auth/sign_up_page.dart';
 export 'package:course/screens/onboarding/components/intro_page_component_list.dart';
+export 'package:course/screens/onboarding/splash_screen.dart';
 export 'package:course/screens/onboarding/components/intro_page_layout.dart';
 export 'package:course/screens/onboarding/components/page_indicator.dart';
 export 'package:course/screens/onboarding/components/custom_image.dart';
+export 'package:course/screens/others/add_category.dart';
+export 'package:course/screens/others/add_lesson_page.dart';
+export 'package:course/screens/others/add_quiz_page.dart';
 export 'package:course/screens/onboarding/intro_page.dart';
 export 'package:course/screens/personal/addpayment_nopayment_page.dart';
 export 'package:course/screens/personal/saved_notsaved_page.dart';
+
 
 
 // SERVICES
@@ -41,6 +49,12 @@ export 'package:course/services/cloud/user_cloud_service.dart';
 export 'package:course/services/auth_service.dart';
 export 'package:course/services/cloud/course_service.dart';
 export 'package:course/services/cloud/category_service.dart';
+export 'package:flutter/rendering.dart';
+export 'package:flutter/painting.dart';
+export 'package:flutter/widgets.dart';
+
+
+
 
 // COMPONENTS
 export 'package:course/components/icon_path.dart';
@@ -60,6 +74,7 @@ export 'package:course/models/lesson_model.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:flutter/material.dart';
+export 'dart:async';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';

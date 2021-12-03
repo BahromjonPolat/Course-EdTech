@@ -1,6 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key}) : super(key: key);

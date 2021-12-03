@@ -1,7 +1,5 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/course/quiz_page.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class TestsPage extends StatelessWidget {
   TestsPage({Key? key}) : super(key: key);

@@ -1,7 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/auth/sign_in_page.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({Key? key}) : super(key: key);

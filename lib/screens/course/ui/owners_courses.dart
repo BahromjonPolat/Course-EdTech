@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/rendering.dart';
 
 class OwnersCoursesPage extends StatelessWidget {
   const OwnersCoursesPage({Key? key}) : super(key: key);

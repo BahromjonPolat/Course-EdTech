@@ -1,16 +1,49 @@
-# course
+# Course-EdTech-Flutter App ui
 
-A new Flutter project.
+In the first four pages we will explain you about our Application. You will simply go to the Next pages by clicking the Next button. In the next pages we will ask you to enter your Email and Password or you can register via Social Networks. We go into our application and adjust the settings. You can change the screen via the Bottomnavigationbar. Now it's your turn to select Courses. Select the course and start learning. 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+**Packages we are using:**
+## Screens it contains:
 
-A few resources to get you started if this is your first Flutter project:
+=> Onboarding
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+=> Login
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+=> Forgot Password
+
+=> Sign Up
+
+=> Complete Profile
+
+=> OTP Verification
+
+=> Home Page
+
+=> Product Details
+
+=> Order
+
+=> Profile (added)
+
+=> Bottom Navigation Bar (added)
+
+Now it contains all the screen, thanks for your love and support 🙏 
+
+## Photos
+
+![Preview](2.png)
+
+![Preview](4.png)
+
+![Preview](5.png)
+
+![Preview](6.png)
+
+![Preview](7.png)
+
+![Preview](8.png)
+
+![Preview](9.png)
+
+![Preview](10.png)

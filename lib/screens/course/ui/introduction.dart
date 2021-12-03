@@ -1,8 +1,4 @@
-import 'package:course/components/const.dart';
-import 'package:course/components/image_path.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:course/components/size_config.dart';
-import 'package:flutter/material.dart';
 
 class IntroductionPage extends StatelessWidget {
   IntroductionPage({Key? key}) : super(key: key);

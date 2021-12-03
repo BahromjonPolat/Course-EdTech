@@ -1,6 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/material.dart';
-
 class SettingsPage extends StatefulWidget {
   @override
   _SettingsPageState createState() => _SettingsPageState();

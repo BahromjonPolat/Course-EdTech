@@ -1,5 +1,4 @@
-import 'package:course/components/image_path.dart';
-import 'package:course/models/intro_model.dart';
+import 'package:course/components/importing_packages.dart';
 
 const String _subtitle =
     "Quarantine is the perfect time to spend your \nday learning something new, from anywhere!";

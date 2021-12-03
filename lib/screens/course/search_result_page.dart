@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
-import 'package:flutter/rendering.dart';
 
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({Key? key}) : super(key: key);
