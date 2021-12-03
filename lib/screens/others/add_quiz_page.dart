@@ -137,12 +137,12 @@ class _AddingQuizPageState extends State<AddingQuizPage> {
       Fluttertoast.showToast(msg: "Please, fill all fields");
       return;
     }
-    Quiz videoModel = Quiz("_id", "_lessonId", "_question", "_answer", []);
+    Quiz quiz = Quiz(id, _currentId, question, answer, [o1, o2, o3]);
 
     await _fireStore
         .collection("EdTechQuizzes")
         .doc(id)
-        .set(videoModel.toMap())
+        .set(quiz.toMap())
         .whenComplete(() {
       Fluttertoast.showToast(msg: "Added");
 

@@ -1,17 +1,17 @@
 class Quiz {
   String? _id;
-  String? _lessonId;
+  String? _courseId;
   String? _question;
   String? _answer;
   List<String>? _options;
 
 
-  Quiz(this._id, this._lessonId, this._question, this._answer, this._options);
+  Quiz(this._id, this._courseId, this._question, this._answer, this._options);
 
   Quiz.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
-    _lessonId = json['lessonId'];
-    _lessonId = json['_question'];
+    _courseId = json['courseId'];
+    _courseId = json['_question'];
     _answer = json['answer'];
     _options = json['options'];
   }
@@ -21,7 +21,7 @@ class Quiz {
         'question': _question,
         'answer': _answer,
         'option': _options,
-        'lessonId': _lessonId,
+        'courseId': _courseId,
       };
 
   String get id => _id!;
@@ -32,5 +32,5 @@ class Quiz {
 
   String get answer => _answer!;
 
-  String get lessonId => _lessonId!;
+  String get courseId => _courseId!;
 }

@@ -106,7 +106,7 @@ class _AddingCourseState extends State<AddingCourse> {
       title,
       subtitle,
       description,
-      'categoryId',
+      _categoryId,
       'authorId',
       imageUrl,
       180,
