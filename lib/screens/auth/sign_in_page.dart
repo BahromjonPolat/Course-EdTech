@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../components/importing_packages.dart';
 
 class SignInPage extends StatefulWidget {
@@ -19,11 +21,10 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key:_formKey,
+          key: _formKey,
           child: Column(
             children: [
               Container(
@@ -44,8 +45,11 @@ class _SignInPageState extends State<SignInPage> {
                       left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
                   height: getUniqueHeight(21),
                   width: getUniqueWidth(341),
-                  child: returnText("Log in with social networks",
-                      getUniqueHeight(14), FontWeight.w400, ConstColor.darkGrey)),
+                  child: returnText(
+                      "Log in with social networks",
+                      getUniqueHeight(14),
+                      FontWeight.w400,
+                      ConstColor.darkGrey)),
               Padding(
                 padding: EdgeInsets.only(
                     left: getUniqueWidth(131.5), right: getUniqueWidth(116.93)),
@@ -66,7 +70,11 @@ class _SignInPageState extends State<SignInPage> {
                 padding: EdgeInsets.all(
                   getUniqueHeight(16),
                 ),
-                child: currentTextform("Email", _emailcontroller, TextInputType.emailAddress, ),
+                child: currentTextform(
+                  "Email",
+                  _emailcontroller,
+                  TextInputType.emailAddress,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -74,10 +82,10 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 child: currentTextform(
                   "Password",
-                    _passwordcontroller,
-                    TextInputType.visiblePassword,
-                    eye ?  Icons.remove_red_eye_outlined: Icons.remove_red_eye,
-                  ),
+                  _passwordcontroller,
+                  TextInputType.visiblePassword,
+                  eye ? Icons.remove_red_eye_outlined : Icons.remove_red_eye,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -85,11 +93,8 @@ class _SignInPageState extends State<SignInPage> {
                   vertical: getUniqueHeight(16),
                 ),
                 child: InkWell(
-                  child: returnText(
-                      "Forgot Password?",
-                      getUniqueHeight(14),
-                      FontWeight.w500,
-                      ConstColor.darkGrey),
+                  child: returnText("Forgot Password?", getUniqueHeight(14),
+                      FontWeight.w500, ConstColor.darkGrey),
                   onTap: () {},
                 ),
               ),
@@ -98,8 +103,7 @@ class _SignInPageState extends State<SignInPage> {
                     alignment: Alignment.center,
                     height: getUniqueHeight(56),
                     width: getUniqueWidth(343),
-                    margin:
-                        EdgeInsets.only(bottom: getUniqueHeight(16)),
+                    margin: EdgeInsets.only(bottom: getUniqueHeight(16)),
                     decoration: BoxDecoration(
                       color: ConstColor.kOrangeE35,
                       borderRadius: BorderRadius.circular(16),
@@ -110,15 +114,17 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                   getUniqueWidth(155),
+                  getUniqueWidth(155),
                   0,
                   getUniqueWidth(155),
-                  getUniqueHeight(69),),
+                  getUniqueHeight(69),
+                ),
                 child: InkWell(
                   child: returnText("Sign up", SizeConfig.screenHeight / 58,
                       FontWeight.w500, ConstColor.darkGrey),
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignUpPage()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
                 ),
               ),
@@ -144,13 +150,10 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   //Textform return qiluvchi Metod
-  TextFormField currentTextform(
-      String text,
-      TextEditingController controller,
+  TextFormField currentTextform(String text, TextEditingController controller,
       TextInputType textInputType,
       [var icons]) {
     return TextFormField(
-
       validator: (text) {
         if (textInputType == TextInputType.emailAddress) {
           if (!RegExp(
@@ -158,16 +161,16 @@ class _SignInPageState extends State<SignInPage> {
               .hasMatch(controller.text)) {
             return "Email xato";
           }
-        }
-        else {
+        } else {
           if (text!.length < 4) {
-           return "4 ta belgidan kam bo'lmasin";
-       }
+            return "4 ta belgidan kam bo'lmasin";
+          }
         }
       },
       controller: controller,
       keyboardType: textInputType,
-      obscureText: textInputType == TextInputType.visiblePassword ? !eye: false,
+      obscureText:
+          textInputType == TextInputType.visiblePassword ? !eye : false,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: GoogleFonts.rubik(
@@ -206,8 +209,14 @@ class _SignInPageState extends State<SignInPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        await _authService.signInWithEmailAndPassword(email, password);
+        User user =
+            await _authService.signInWithEmailAndPassword(email, password);
         Fluttertoast.showToast(msg: "Successfully");
+
+        CloudStoreService service = CloudStoreMethods();
+        UserModel userModel = await service.getUserData(user.uid);
+
+        _setToPref(userModel);
 
         Navigator.pushReplacement(
           context,
@@ -216,11 +225,17 @@ class _SignInPageState extends State<SignInPage> {
           ),
         );
       } catch (e) {
-        Fluttertoast.showToast(msg: "E-mail yoki password xato !", textColor: Colors.red);
+        Fluttertoast.showToast(
+            msg: "E-mail yoki password xato !", textColor: Colors.red);
         debugPrint(e.toString());
         _emailcontroller.clear();
         _passwordcontroller.clear();
       }
     }
+  }
+
+  void _setToPref(UserModel user) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('currentUser', jsonEncode(user.toMap()));
   }
 }

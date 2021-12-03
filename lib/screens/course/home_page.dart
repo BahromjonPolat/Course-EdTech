@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -15,6 +17,19 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController _textController = TextEditingController();
   int _currentIndex = 0;
+
+  late UserModel _userModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _getPref().then((value) {
+      _userModel = value;
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(height: getUniqueHeight(16)),
                         Text(
-                          "Juana Antonietta",
+                          _userModel.name,
                           style: TextStyle(
                               fontSize: getUniqueWidth(32),
                               fontWeight: FontWeight.w700),
@@ -255,6 +270,22 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _pageList() => [
         _buildBody(),
         ProfilePage(),
-        SettingsPage(),
+        SettingsPage(_userModel),
       ];
+
+  Future<UserModel> _getPref() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    Map<String, dynamic> userData = {
+      'id': '2',
+      'name': 'Juana Antonieta',
+      'imageUrl': 'default',
+      'email': 'juanita123@gmail.com',
+      'password': '123456'
+    };
+
+    String data = pref.getString('currentUser') ?? userData.toString();
+
+    UserModel user = UserModel.fromJson(jsonDecode(data));
+    return user;
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../components/importing_packages.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -209,6 +211,8 @@ class _SignUpPageState extends State<SignUpPage> {
         // USER MALUMOTLARINI DB GA YOZISH
         await service.setUserData(userModel);
 
+        _setToPref(userModel);
+
         Fluttertoast.showToast(msg: "User succesfuly registered");
         // USERNI HOME SCREENGA YO'NALTIRISH
         Navigator.pushAndRemoveUntil(
@@ -231,5 +235,10 @@ class _SignUpPageState extends State<SignUpPage> {
       Fluttertoast.showToast(msg: "Please, fill all fields");
       _passwordcontroller.clear();
     }
+  }
+
+  void _setToPref(UserModel user) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('currentUser', jsonEncode(user.toMap()));
   }
 }

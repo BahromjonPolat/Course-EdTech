@@ -1,5 +1,10 @@
 import 'package:course/components/importing_packages.dart';
 class SettingsPage extends StatefulWidget {
+
+  UserModel user;
+
+  SettingsPage(this.user);
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -7,6 +12,14 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   String userEmail = "";
   bool switchvalue = false;
+
+  late UserModel _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _user = widget.user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +77,10 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             buttonMethod(
-                "Name", IconPath.circleAccount, false, "Juana Antonieta"),
+                "Name", IconPath.circleAccount, false, _user.name),
             // UserEmailni o'rniga  firebasedagi nameni ulash kerak
             buttonMethod(
-                "Email", IconPath.circleMail, false, "juanita123@gmail.com"),
+                "Email", IconPath.circleMail, false, _user.email),
             // UserEmailni o'rniga  firebasedagi emailni ulash kerak
             buttonMethod("Password", IconPath.circlePassword, false,
                 "changed 2 weeks ago"),
