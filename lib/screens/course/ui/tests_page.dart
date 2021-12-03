@@ -20,46 +20,46 @@ class _TestsPageState extends State<TestsPage> {
 
   late List _quizList;
 
+  late String _courseId;
+
+  @override
+  void initState() {
+    super.initState();
+    _courseId = widget.lessonId;
+  }
 
   @override
   Widget build(BuildContext context) {
-
     _context = context;
-    _width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    _width = MediaQuery.of(context).size.width;
 
     return SliverList(
       delegate: SliverChildListDelegate([
         SizedBox(height: getUniqueHeight(16.0)),
         FutureBuilder(
-            future: _service.getQuizList(widget.lessonId),
-            builder: (context,AsyncSnapshot<List<Quiz>> snap) {
-          if (snap.hasData) {
-            _quizList =snap.data!;
-            return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: snap.data!.length,
-                itemBuilder: (context, index) {
-                Quiz quiz = snap.data![index];
-              return _setTestLayout(quiz, index + 1);
-            });
-          }
-          else if (snap.hasError) {
-            return Text("Error");
-          }
+            future: _getQuizList(),
+            builder: (context, AsyncSnapshot<List<dynamic>> snap) {
+              if (snap.hasData) {
+                _quizList = snap.data!;
+                return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snap.data!.length,
+                    itemBuilder: (context, index) {
+                      var quiz = snap.data![index];
+                      return _setTestLayout(quiz, index);
+                    });
+              } else if (snap.hasError) {
+                return const Text("Error");
+              }
 
-          return CupertinoActivityIndicator();
-        })
+              return const CupertinoActivityIndicator();
+            })
       ]),
     );
   }
 
-
-  Container _setTestLayout(Quiz quiz, int index) =>
-      Container(
+  Container _setTestLayout(dynamic data, int index) => Container(
         height: getUniqueHeight(463.0),
         width: _width,
         margin: EdgeInsets.symmetric(vertical: getUniqueHeight(8.0)),
@@ -90,24 +90,25 @@ class _TestsPageState extends State<TestsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      "Quiz ${index}",
+                      "Quiz ${index + 1}",
                       color: ConstColor.kOrangeE35,
                       weight: FontWeight.w400,
                     ),
                     SizedBox(height: getUniqueHeight(4.0)),
-                    CustomTextWidget("quiz.question.toString()", size: 20.0),
+                    CustomTextWidget(data['question'], size: 20.0),
                     SizedBox(height: getUniqueHeight(8.0)),
                     CustomTextWidget(
-                      quiz.courseId,
+                      data['question'],
                       weight: FontWeight.w400,
                       color: ConstColor.kDarkGrey,
                       lineHeight: 1.4,
                     ),
                     const Spacer(),
                     CustomElevatedButton(
-                        onPressed: (){
+                        onPressed: () {
                           _onBeginButtonPressed(_quizList);
-                        }, label: "Begin"),
+                        },
+                        label: "Begin"),
                   ],
                 ),
               ),
@@ -115,6 +116,15 @@ class _TestsPageState extends State<TestsPage> {
           ],
         ),
       );
+
+  Future<List<dynamic>> _getQuizList() async {
+    var snap = await FirebaseFirestore.instance
+        .collection("EdTechQuizzes")
+        .where('courseId', isEqualTo: _courseId)
+        .get();
+
+    return snap.docs;
+  }
 
   void _onBeginButtonPressed(List list) {
     Navigator.push(_context, MaterialPageRoute(builder: (_) => QuizPage(list)));

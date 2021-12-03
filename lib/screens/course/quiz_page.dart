@@ -46,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
           SizedBox(height: getUniqueHeight(8.0)),
           CustomTextWidget(
-            "quiz.question.toString()",
+            _quizList[0]['question'],
             lineHeight: 1.4,
             size: 24.0,
             textAlign: TextAlign.center,
