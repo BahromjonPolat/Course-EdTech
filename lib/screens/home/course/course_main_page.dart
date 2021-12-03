@@ -1,13 +1,28 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/screens/course/ui/discuss_page.dart';
+import 'package:course/services/cloud/lesson_service.dart';
+import 'package:flutter/cupertino.dart';
 
 class CourseMainPage extends StatefulWidget {
-  const CourseMainPage({Key? key}) : super(key: key);
+  Lesson lesson;
+
+  CourseMainPage(this.lesson, {Key? key}) : super(key: key);
 
   @override
   _CourseMainPageState createState() => _CourseMainPageState();
 }
 
 class _CourseMainPageState extends State<CourseMainPage> {
+  late Lesson _lesson;
+  final LessonService _lessonService = LessonMethods();
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _lesson = widget.lesson;
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -18,15 +33,36 @@ class _CourseMainPageState extends State<CourseMainPage> {
   }
 
   Padding _buildScrollableBody() => Padding(
-        padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16.0)),
-        child: CustomScrollView(
-          slivers: [
-            _buildSliverAppBar(),
-            _showHeader(),
-            TestsPage(),
-          ],
-        ),
-      );
+      padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(16.0)),
+      child: CustomScrollView(
+        slivers: [
+          _buildSliverAppBar(),
+          _showHeader(),
+          pages()[_currentIndex],
+        ],
+      ));
+
+  // FutureBuilder<List<Lesson>> futureBuilder() {
+  //   return FutureBuilder(
+  //       future: _lessonService.getLessonById(_course.id),
+  //       builder: (context, AsyncSnapshot<Lesson> snap) {
+  //         if (snap.hasData) {
+  //           Lesson lesson = snap.data!;
+  //           return CustomScrollView(
+  //             slivers: [
+  //               _buildSliverAppBar(),
+  //               _showHeader(),
+  //               IntroductionPage(lesson),
+  //             ],
+  //           );
+  //         } else if (snap.hasError) {
+  //           return CustomTextWidget("Error");
+  //         }
+  //
+  //         return const CupertinoActivityIndicator();
+  //       },
+  //     );
+  // }
 
   SliverAppBar _buildSliverAppBar() => SliverAppBar(
         floating: true,
@@ -34,7 +70,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
         elevation: 0.0,
         expandedHeight: getUniqueHeight(42.0),
         title: CustomTextWidget(
-          "HTML",
+          _lesson.title,
           size: getUniqueWidth(24.0),
           color: ConstColor.kDark,
         ),
@@ -71,21 +107,39 @@ class _CourseMainPageState extends State<CourseMainPage> {
   Row _showButtons() {
     return Row(
       children: [
-        CustomTabButton(
-          label: "Lesson",
-          onPressed: () {},
-          borderRadius: CustomTabButton.leftBorder(),
-          color: ConstColor.kDark,
-        ),
+        _customTabButton("Lesson", CustomTabButton.leftBorder(), 0),
         SizedBox(width: getUniqueWidth(4.0)),
-        CustomTabButton(label: "Tests", onPressed: () {}),
+        _customTabButton("Tests", BorderRadius.circular(0.0), 1),
         SizedBox(width: getUniqueWidth(4.0)),
-        CustomTabButton(
-          label: "Discuss",
-          onPressed: () {},
-          borderRadius: CustomTabButton.rightBorder(),
-        ),
+        _customTabButton("Discuss", CustomTabButton.rightBorder(), 2),
       ],
     );
   }
+
+   _customTabButton(String label, BorderRadius borderRadius, int index) {
+    return Expanded(
+      child: InkWell(
+        onTap: (){
+          _changeIndex(index);
+        },
+        child: CustomTabButton(
+            label: label,
+            borderRadius: borderRadius,
+            color: _currentIndex == index ? ConstColor.dark : ConstColor.darkGrey,
+          ),
+      ),
+    );
+  }
+
+  void _changeIndex(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  List<Widget> pages() => [
+        IntroductionPage(_lesson),
+        TestsPage(),
+        DiscussPage(),
+      ];
 }

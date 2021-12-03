@@ -1,30 +1,44 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/services/cloud/lesson_service.dart';
+import 'package:flutter/cupertino.dart';
 
 class IntroductionPage extends StatelessWidget {
-  IntroductionPage({Key? key}) : super(key: key);
+  Lesson lesson;
+  IntroductionPage(this.lesson, {Key? key}) : super(key: key);
 
   late double _width;
+  final LessonService _lessonService = LessonMethods();
 
   @override
   Widget build(BuildContext context) {
     _width = MediaQuery.of(context).size.width;
     return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: getUniqueHeight(24.0)),
-          _showVideo(),
-          SizedBox(height: getUniqueHeight(24.0)),
-          CustomTextWidget("Introduction", size: 20.0),
-          SizedBox(height: getUniqueHeight(4.0)),
-          CustomTextWidget(
-            _content,
-            weight: FontWeight.w400,
-            color: ConstColor.kDarkGrey,
-            lineHeight: 1.4,
-          )
-        ],
-      ),
+      child: FutureBuilder(
+        future: _lessonService.getLessonById(""),
+        builder: (context, snap) {
+        if (snap.hasData) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: getUniqueHeight(24.0)),
+              _showVideo(),
+              SizedBox(height: getUniqueHeight(24.0)),
+              CustomTextWidget("Introduction", size: 20.0),
+              SizedBox(height: getUniqueHeight(4.0)),
+              CustomTextWidget(
+                lesson.content,
+                weight: FontWeight.w400,
+                color: ConstColor.kDarkGrey,
+                lineHeight: 1.4,
+              )
+            ],
+          );
+        }
+        if (snap.hasError) {
+          return CustomTextWidget("Error");
+        }
+        return const CupertinoActivityIndicator();
+      },)
     );
   }
 

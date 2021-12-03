@@ -3,7 +3,7 @@ import 'package:course/components/importing_packages.dart';
 abstract class CourseService {
   Future<void> setNewCourse(Course course);
 
-  Future getAllCourses();
+  Future<List<Course>> getAllCourses();
 }
 
 class CourseMethod extends CourseService {
@@ -19,10 +19,9 @@ class CourseMethod extends CourseService {
   }
 
   @override
-  Future getAllCourses() async {
+  Future<List<Course>> getAllCourses() async {
     QuerySnapshot<Map<String, dynamic>> courses =
         await _fireStore.collection("EdTechCourses").orderBy('timestamp').get();
-
     return courses.docs.map((e) => Course.fromJson(e.data())).toList();
   }
 }

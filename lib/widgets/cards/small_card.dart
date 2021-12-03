@@ -4,14 +4,13 @@ class SmallCardMark extends StatelessWidget {
   final String image;
   final String title;
   final String description;
-  final     EdgeInsets? margin;
-
+  final EdgeInsets? margin;
 
   const SmallCardMark(
       {required this.title,
       required this.image,
       required this.description,
-        this.margin = EdgeInsets.zero,
+      this.margin = EdgeInsets.zero,
       Key? key})
       : super(key: key);
 
@@ -32,7 +31,6 @@ class SmallCardMark extends StatelessWidget {
             width: getUniqueWidth(78),
             fit: BoxFit.cover,
           ),
-
           Padding(
             padding: EdgeInsets.fromLTRB(
               getUniqueWidth(8),
@@ -44,26 +42,26 @@ class SmallCardMark extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 TitleText(title, size: 20),
-
                 Container(
                   width: getUniqueWidth(222),
                   height: getUniqueHeight(11),
                   decoration: BoxDecoration(
                     color: ConstColor.kOrangeAccentF8,
-                    borderRadius: BorderRadius.circular(getUniqueHeight(5.5),
+                    borderRadius: BorderRadius.circular(
+                      getUniqueHeight(5.5),
                     ),
                   ),
                   child: Container(
-                  width: getUniqueWidth(220),
-                  height: getUniqueHeight(9),
-                  decoration: BoxDecoration(
-                    color: ConstColor.kBlue65,
-                    borderRadius: BorderRadius.circular(getUniqueHeight(4.5),
+                    width: getUniqueWidth(220),
+                    height: getUniqueHeight(9),
+                    decoration: BoxDecoration(
+                      color: ConstColor.kBlue65,
+                      borderRadius: BorderRadius.circular(
+                        getUniqueHeight(4.5),
+                      ),
                     ),
                   ),
-                ),
                 ),
               ],
             ),

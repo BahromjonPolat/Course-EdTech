@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Rubik"
       ),
 
-      home: const UploadingPage(),
+      home: const SplashScreenPage(),
     );
   }
 }

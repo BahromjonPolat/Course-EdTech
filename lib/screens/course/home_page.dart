@@ -9,6 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final CourseService _courseService = CourseMethod();
+
   final CategoryService _categoryService = CategoryMethod();
 
   final TextEditingController _textController = TextEditingController();
@@ -75,21 +77,42 @@ class _HomePageState extends State<HomePage> {
             // COURSE CARD SECTION
             SizedBox(
               height: getUniqueHeight(500),
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.zero, 
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return CourseCard(
-                    color: index % 2 == 0
-                        ? ConstColor.kOrangeAccentF8
-                        : ConstColor.kBlueAccentE6,
-                    courseDescription: "Advanced mobile interface design",
-                    image: "assets/images/course_ui.png",
-                    addTime: "2 h 30 min",
-                    title: "UI",
-                    cost: "50",
-                  );
+              child: FutureBuilder(
+                future: _courseService.getAllCourses(),
+                builder: (context, AsyncSnapshot<List<Course>> snap) {
+                  if (snap.hasData) {
+                    return ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        Course course = snap.data![index];
+                        return CourseCard(
+                          color: index % 2 == 0
+                              ? ConstColor.kOrangeAccentF8
+                              : ConstColor.kBlueAccentE6,
+                          courseDescription: course.subtitle,
+                          image: "assets/images/${course.imageUrl}.png",
+                          addTime: "2 h 30 min",
+                          title: course.title,
+                          cost: "${course.price}",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProductDetailPage(course),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  }
+
+                  if (snap.hasError) {
+                    return CustomTextWidget("Error");
+                  }
+                  return const CupertinoActivityIndicator();
                 },
               ),
             ),
@@ -116,15 +139,14 @@ class _HomePageState extends State<HomePage> {
             builder: (context, AsyncSnapshot<List<Category>> snap) {
               if (snap.hasData) {
                 return ListView.builder(
-                  scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.horizontal,
                     itemCount: snap.data!.length,
                     itemBuilder: (context, index) {
                       Category category = snap.data![index];
-                      
+
                       return _buildChip(category.name);
                     });
-              }
-              else if (snap.hasError ) {
+              } else if (snap.hasError) {
                 return CustomTextWidget("Error");
               }
 

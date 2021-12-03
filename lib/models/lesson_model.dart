@@ -21,7 +21,7 @@ class Lesson {
     _content = json['content'];
     _courseId = json['courseId'];
     _imageUrl = json['imageUrl'];
-    _timestamp = json['timestamp'];
+    _timestamp = json['timestamp'].toDate();
   }
 
   Map<String, dynamic> toMap() => {

@@ -2,14 +2,14 @@ import 'package:course/components/importing_packages.dart';
 
 class CustomTabButton extends StatelessWidget {
   String label;
-  VoidCallback onPressed;
+
   BorderRadius? borderRadius;
   Color? color;
+
 
   CustomTabButton({
     Key? key,
     required this.label,
-    required this.onPressed,
     this.borderRadius,
     this.color,
   }) : super(key: key);

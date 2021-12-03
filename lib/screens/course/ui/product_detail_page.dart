@@ -1,21 +1,20 @@
 import 'package:course/components/importing_packages.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key? key}) : super(key: key);
+  Course course;
+
+  ProductDetailPage(this.course, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB( getUniqueWidth(16),
-        getUniqueHeight(20),
-        getUniqueWidth(16),
-        getUniqueWidth(0)),
+        padding: EdgeInsets.fromLTRB(getUniqueWidth(16), getUniqueHeight(20),
+            getUniqueWidth(16), getUniqueWidth(0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // COURSE TITLE SECTION
             SafeArea(
               child: Row(
@@ -26,7 +25,7 @@ class ProductDetailPage extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     height: getUniqueWidth(40),
                   ),
-                  const TitleText("HTML", textAlign: TextAlign.center),
+                  TitleText(course.title, textAlign: TextAlign.center),
                   const SizedBox(width: 40),
                 ],
               ),
@@ -37,17 +36,17 @@ class ProductDetailPage extends StatelessWidget {
               margin: EdgeInsets.only(top: getUniqueHeight(16)),
               height: getUniqueHeight(257),
               child: Image.asset(
-                ImagePath.productDetail,//"assets/images/product_detail.png"
+                ImagePath.productDetail, //"assets/images/product_detail.png"
                 fit: BoxFit.scaleDown,
               ),
             ),
 
             Row(
               children: [
-               const  Spacer(),
+                const Spacer(),
                 Chip(
                   label: Text(
-                    "\$ 50",
+                    "\$ ${course.price}",
                     style: TextStyle(
                         fontSize: getUniqueWidth(14),
                         fontWeight: FontWeight.w500,
@@ -60,24 +59,31 @@ class ProductDetailPage extends StatelessWidget {
 
             // ABOUT THE COURSE
             Padding(
-              padding: EdgeInsets.only(top: getUniqueHeight(24), bottom: getUniqueHeight(4)),
+              padding: EdgeInsets.only(
+                  top: getUniqueHeight(24), bottom: getUniqueHeight(4)),
               child: const TitleText('About the course'),
             ),
 
             // ABOUT DESCRIPTION SECTION
-            SizedBox(width: SizeConfig.screenWidth,
+            SizedBox(
+              width: SizeConfig.screenWidth,
               child: CustomTextWidget(
-                  "You can launch a new career in web development today by learning HTML & CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time, a lot of determination, and a teacher you trust."),
+                  course.about),
             ),
 
             // DURATION SECTION
             Padding(
-              padding: EdgeInsets.only(top: getUniqueHeight(24), bottom: getUniqueHeight(4)),
-              child: CustomTextWidget("Duration", size: 20, color: ConstColor.kBlack,),
+              padding: EdgeInsets.only(
+                  top: getUniqueHeight(24), bottom: getUniqueHeight(4)),
+              child: CustomTextWidget(
+                "Duration",
+                size: 20,
+                color: ConstColor.kBlack,
+              ),
             ),
             CustomTextWidget("1h 30min"),
             const Spacer(),
-            
+
             // ADD TO CART BUTTON SECTION
             Padding(
               padding: EdgeInsets.only(
@@ -85,7 +91,10 @@ class ProductDetailPage extends StatelessWidget {
                 right: getUniqueWidth(17),
                 bottom: getUniqueHeight(33),
               ),
-              child: CustomElevatedButton(onPressed: () {}, label: "Add to card"),
+              child:
+                  CustomElevatedButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=> ChooseLessonsCoursePage(course)));
+                  }, label: "Add to card"),
             )
           ],
         ),
