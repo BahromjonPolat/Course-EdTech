@@ -34,14 +34,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Image.asset(ImagePath.signUp),
                   ),
                   Positioned(
-                    child: Container(
-                      height: getUniqueHeight(48),
-                      width: getUniqueWidth(48),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: SvgPicture.asset(IconPath.out_back),
-                    ),
+                    child: InkWell(child: SvgPicture.asset(IconPath.out_back),onTap: (){
+                    },),
                     right: getUniqueHeight(290),
                     top: getUniqueHeight(60),
                   ),
