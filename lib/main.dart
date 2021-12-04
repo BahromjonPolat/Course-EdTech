@@ -1,5 +1,3 @@
-import 'package:course/screens/onboarding/splash_screen.dart';
-import 'package:course/screens/others/upload_page.dart';
 import 'package:flutter/material.dart';
 import 'package:course/components/importing_packages.dart';
 

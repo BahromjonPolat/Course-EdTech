@@ -1,6 +1,4 @@
 import 'package:course/components/importing_packages.dart';
-import 'package:course/screens/course/ui/discuss_page.dart';
-import 'package:course/services/cloud/lesson_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class CourseMainPage extends StatefulWidget {

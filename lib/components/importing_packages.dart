@@ -5,43 +5,37 @@ export 'package:course/widgets/text/title_text_widget.dart';
 export 'package:course/widgets/text_field/text_field.dart';
 export 'package:course/widgets/buttons/elevated_button.dart';
 export 'package:course/widgets/buttons/icon_button.dart';
-export 'package:course/widgets/bottom_navigation_bar.dart';
+export 'package:course/widgets/bottom_bar/bottom_navigation_bar.dart';
 export 'package:course/widgets/app_bar/app_bar.dart';
 export 'package:course/widgets/cards/course_card.dart';
 export 'package:course/widgets/cards/main_card.dart';
 export 'package:course/widgets/cards/small_card.dart';
 export 'package:course/widgets/buttons/text_button.dart';
 
-
 // SCREENS
-export 'package:course/screens/course/components/tab_button.dart';
-export 'package:course/screens/home/course/course_main_page.dart';
-export 'package:course/screens/home/settings/settings_page.dart';
-export 'package:course/screens/home/profile/profile_page.dart';
+export 'package:course/screens/course/lesson_main_page.dart';
+export 'package:course/screens/profile/settings_page.dart';
+export 'package:course/screens/profile/profile_page.dart';
 export 'package:course/screens/course/home_screen.dart';
 export 'package:course/screens/course/home_page.dart';
 export 'package:course/screens/course/result_page.dart';
 export 'package:course/screens/course/search_result_page.dart';
-export 'package:course/screens/course/ui/product_detail_page.dart';
-export 'package:course/screens/course/ui/owners_courses.dart';
+export 'package:course/screens/course/product_detail_page.dart';
+export 'package:course/screens/course/owners_courses.dart';
 export 'package:course/screens/course/choose_lessons_course.dart';
-export 'package:course/screens/course/ui/introduction.dart';
-export 'package:course/screens/course/ui/tests_page.dart';
+export 'package:course/screens/course/introduction.dart';
+export 'package:course/screens/course/tests_page.dart';
 export 'package:course/screens/course/quiz_page.dart';
 export 'package:course/screens/auth/sign_in_page.dart';
 export 'package:course/screens/auth/sign_up_page.dart';
-export 'package:course/screens/onboarding/components/intro_page_component_list.dart';
 export 'package:course/screens/onboarding/splash_screen.dart';
-export 'package:course/screens/onboarding/components/intro_page_layout.dart';
-export 'package:course/screens/onboarding/components/page_indicator.dart';
-export 'package:course/screens/onboarding/components/custom_image.dart';
-export 'package:course/screens/others/add_category.dart';
-export 'package:course/screens/others/add_lesson_page.dart';
-export 'package:course/screens/others/add_quiz_page.dart';
+export 'package:course/screens/admin_panel/add_category.dart';
+export 'package:course/screens/admin_panel/add_lesson_page.dart';
+export 'package:course/screens/admin_panel/add_quiz_page.dart';
 export 'package:course/screens/onboarding/intro_page.dart';
-export 'package:course/screens/personal/addpayment_nopayment_page.dart';
-export 'package:course/screens/personal/saved_notsaved_page.dart';
-
+export 'package:course/screens/profile/addpayment_nopayment_page.dart';
+export 'package:course/screens/profile/saved_notsaved_page.dart';
+export 'package:course/screens/course/discuss_page.dart';
 
 
 // SERVICES
@@ -52,8 +46,7 @@ export 'package:course/services/cloud/category_service.dart';
 export 'package:flutter/rendering.dart';
 export 'package:flutter/painting.dart';
 export 'package:flutter/widgets.dart';
-
-
+export 'package:course/services/cloud/lesson_service.dart';
 
 
 // COMPONENTS
@@ -61,6 +54,11 @@ export 'package:course/components/icon_path.dart';
 export 'package:course/components/image_path.dart';
 export 'package:course/components/size_config.dart';
 export 'package:course/components/const.dart';
+export 'package:course/components/custom_image.dart';
+export 'package:course/components/page_indicator.dart';
+export 'package:course/components/intro_page_layout.dart';
+export 'package:course/components/intro_page_component_list.dart';
+export 'package:course/components/tab_button.dart';
 
 // MODELS
 export 'package:course/models/user_model.dart';

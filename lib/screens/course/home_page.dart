@@ -63,11 +63,14 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w400),
                         ),
                         SizedBox(height: getUniqueHeight(16)),
-                        Text(
-                          _userModel.name,
-                          style: TextStyle(
-                              fontSize: getUniqueWidth(32),
-                              fontWeight: FontWeight.w700),
+                        SizedBox(
+                          width: SizeConfig.screenWidth - 90,
+                          child: Text(
+                            _userModel.name,
+                            style: TextStyle(
+                                fontSize: getUniqueWidth(32),
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ],
                     ),
@@ -83,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.zero,
               margin: EdgeInsets.only(top: getUniqueHeight(6)),
-              child: TextFieldMark(hintText: "Search course"),
+              child: TextFieldMark(hintText: "Search course", check: true),
             ),
 
             // CATEGORIES SECTION
@@ -99,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                     return ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       padding: EdgeInsets.zero,
-                      itemCount: 3,
+                      itemCount: snap.data!.length,
                       itemBuilder: (context, index) {
                         Course course = snap.data![index];
                         return CourseCard(
@@ -159,7 +162,10 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       Category category = snap.data![index];
 
-                      return _buildChip(category.name);
+                      return InkWell(child: _buildChip(category.name),
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchResultPage(searchText: category.name),),);
+                      },);
                     });
               } else if (snap.hasError) {
                 return CustomTextWidget("Error");
@@ -198,12 +204,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _searchFunction() {
-    if (_textController.text.isNotEmpty) {
-      _textController.clear();
-      debugPrint("Search: _searchText");
-    }
-  }
 
   Container _bottomNavBar() => Container(
         decoration: BoxDecoration(
