@@ -1,7 +1,10 @@
 import 'package:course/components/importing_packages.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  int len;
+  int result;
+
+  ResultPage(this.result, this.len, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class ResultPage extends StatelessWidget {
           CustomTextWidget("Congratulations", size: 24.0),
           SizedBox(height: getUniqueHeight(8.0)),
           CustomTextWidget(
-            "Congratulations for getting \nall the answers correct!",
+            _allCorrect(),
             textAlign: TextAlign.center,
             lineHeight: 1.3,
             color: ConstColor.kDarkGrey,
@@ -33,6 +36,10 @@ class ResultPage extends StatelessWidget {
       ),
     );
   }
+
+  String _allCorrect() => len == result
+      ? "Congratulations for getting \nall the answers correct!"
+      : "Congratulations for getting \n${len - result} / $len the answers correct!";
 
   Row _showSocialNetworkButtons() {
     return Row(
