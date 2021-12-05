@@ -53,6 +53,7 @@ class OwnersCoursesPage extends StatelessWidget {
                     addTime: "2 h 30 min",
                     title: "UI",
                     cost: "50",
+                    onPressed: (){},
                   );
                 },
               ),

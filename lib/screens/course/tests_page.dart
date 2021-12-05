@@ -104,11 +104,7 @@ class _TestsPageState extends State<TestsPage> {
                       lineHeight: 1.4,
                     ),
                     const Spacer(),
-                    CustomElevatedButton(
-                        onPressed: () {
-                          _onBeginButtonPressed(_quizList);
-                        },
-                        label: "Begin"),
+                    _setButton(_quizList),
                   ],
                 ),
               ),
@@ -126,10 +122,26 @@ class _TestsPageState extends State<TestsPage> {
     return snap.docs;
   }
 
+  OutlinedButton _setButton(List list,) => OutlinedButton(
+        onPressed: () {
+          _onBeginButtonPressed(list);
+        },
+        child: CustomTextWidget('Begin'),
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(
+              width: 1.0, color: ConstColor.kOrangeE35),
+          shape: RoundedRectangleBorder(borderRadius: _setBorderRadius()),
+          fixedSize: Size(
+            MediaQuery.of(context).size.width,
+            getUniqueHeight(56.0),
+          ),
+        ),
+      );
+
+  BorderRadius _setBorderRadius() =>
+      BorderRadius.circular(getUniqueWidth(16.0));
+
   void _onBeginButtonPressed(List list) {
     Navigator.push(_context, MaterialPageRoute(builder: (_) => QuizPage(list)));
   }
-
-  final String _content =
-      "Let’s put your memory on this topic test. Solve tasks and check your knowledge.";
 }

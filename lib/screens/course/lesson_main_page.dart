@@ -3,8 +3,13 @@ import 'package:flutter/cupertino.dart';
 
 class CourseMainPage extends StatefulWidget {
   Lesson lesson;
+  String courseTitle;
 
-  CourseMainPage(this.lesson, {Key? key}) : super(key: key);
+  CourseMainPage(
+    this.lesson, {
+    Key? key,
+    required this.courseTitle,
+  }) : super(key: key);
 
   @override
   _CourseMainPageState createState() => _CourseMainPageState();
@@ -12,6 +17,7 @@ class CourseMainPage extends StatefulWidget {
 
 class _CourseMainPageState extends State<CourseMainPage> {
   late Lesson _lesson;
+  late String _title;
   final LessonService _lessonService = LessonMethods();
   int _currentIndex = 0;
 
@@ -19,6 +25,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
   void initState() {
     super.initState();
     _lesson = widget.lesson;
+    _title = widget.courseTitle;
   }
 
   @override
@@ -68,7 +75,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
         elevation: 0.0,
         expandedHeight: getUniqueHeight(42.0),
         title: CustomTextWidget(
-          _lesson.title,
+          _title,
           size: getUniqueWidth(24.0),
           color: ConstColor.kDark,
         ),
@@ -86,7 +93,7 @@ class _CourseMainPageState extends State<CourseMainPage> {
           children: [
             SizedBox(height: getUniqueHeight(32.0)),
             CustomTextWidget(
-              "Tags For Headers",
+              _lesson.title,
               size: getUniqueWidth(24.0),
               fontFamily: "Inter",
             ),
@@ -114,17 +121,17 @@ class _CourseMainPageState extends State<CourseMainPage> {
     );
   }
 
-   _customTabButton(String label, BorderRadius borderRadius, int index) {
+  _customTabButton(String label, BorderRadius borderRadius, int index) {
     return Expanded(
       child: InkWell(
-        onTap: (){
+        onTap: () {
           _changeIndex(index);
         },
         child: CustomTabButton(
-            label: label,
-            borderRadius: borderRadius,
-            color: _currentIndex == index ? ConstColor.dark : ConstColor.darkGrey,
-          ),
+          label: label,
+          borderRadius: borderRadius,
+          color: _currentIndex == index ? ConstColor.dark : ConstColor.darkGrey,
+        ),
       ),
     );
   }
@@ -140,6 +147,4 @@ class _CourseMainPageState extends State<CourseMainPage> {
         TestsPage(_lesson.courseId),
         const DiscussPage(),
       ];
-
-
 }

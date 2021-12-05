@@ -169,6 +169,7 @@ class _SignInPageState extends State<SignInPage> {
       },
       controller: controller,
       keyboardType: textInputType,
+      textInputAction: TextInputAction.next,
       obscureText:
           textInputType == TextInputType.visiblePassword ? !eye : false,
       decoration: InputDecoration(

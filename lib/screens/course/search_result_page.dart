@@ -3,16 +3,15 @@ import 'package:flutter/cupertino.dart';
 
 class SearchResultPage extends StatefulWidget {
   final String? searchText;
-  const SearchResultPage({
-    required this.searchText,
-    Key? key}) : super(key: key);
+
+  const SearchResultPage({required this.searchText, Key? key})
+      : super(key: key);
 
   @override
   State<SearchResultPage> createState() => _SearchResultPageState();
 }
 
 class _SearchResultPageState extends State<SearchResultPage> {
-
   final CourseService _courseService = CourseMethod();
 
   final CategoryService _categoryService = CategoryMethod();
@@ -22,16 +21,17 @@ class _SearchResultPageState extends State<SearchResultPage> {
     SizeConfig().init(context);
     return Scaffold(
       body: FutureBuilder(
-        future: _courseService.getOnlyCourses(searchText:  widget.searchText.toString()),
-           builder: (context, snap) {
-        if (snap.hasData) {
-          return buildResultFound(snap);
-        }
-        if (snap.hasError) {
-                    return CustomTextWidget("Error");
-                  }
-                  return const Center(child:  CupertinoActivityIndicator());
-      },
+        future: _courseService.getOnlyCourses(
+            searchText: widget.searchText.toString()),
+        builder: (context, snap) {
+          if (snap.hasData) {
+            return buildResultFound(snap);
+          }
+          if (snap.hasError) {
+            return CustomTextWidget("Error");
+          }
+          return const Center(child: CupertinoActivityIndicator());
+        },
       ),
     );
   }
@@ -66,7 +66,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
                   Container(
                     width: getUniqueWidth(287),
                     padding: EdgeInsets.zero,
-                    child: TextFieldMark(hintText: "Search course",check: false),
+                    child:
+                        TextFieldMark(hintText: "Search course", check: false),
                   ),
                 ],
               ),
@@ -94,25 +95,24 @@ class _SearchResultPageState extends State<SearchResultPage> {
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 Course course = snap.data![index];
-                return
-                  CourseCard(
-                        color: index % 2 == 0
-                            ? ConstColor.kOrangeAccentF8
-                            : ConstColor.kBlueAccentE6,
-                        courseDescription: course.subtitle,
-                        image: "assets/images/${course.imageUrl}.png",
-                        addTime: "2 h 30 min",
-                        title: course.title,
-                        cost: "${course.price}",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ProductDetailPage(course),
-                            ),
-                          );
-                        },
-                      );
+                return CourseCard(
+                  color: index % 2 == 0
+                      ? ConstColor.kOrangeAccentF8
+                      : ConstColor.kBlueAccentE6,
+                  courseDescription: course.subtitle,
+                  image: "assets/images/${course.imageUrl}.png",
+                  addTime: "2 h 30 min",
+                  title: course.title,
+                  cost: "${course.price}",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProductDetailPage(course),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           )

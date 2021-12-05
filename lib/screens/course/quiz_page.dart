@@ -13,11 +13,16 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   late List _quizList;
 
+  late final int _lenOfList;
+
   @override
   void initState() {
     super.initState();
     _quizList = widget.quizList;
+    _lenOfList = _quizList.length;
   }
+
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +44,14 @@ class _QuizPageState extends State<QuizPage> {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomTextWidget(
-            "1 of20",
+            "${_currentIndex + 1} of $_lenOfList",
             size: 16.0,
             color: ConstColor.kDarkGrey,
             weight: FontWeight.w400,
           ),
           SizedBox(height: getUniqueHeight(8.0)),
           CustomTextWidget(
-            _quizList[0]['question'],
+            _quizList[_currentIndex]['question'],
             lineHeight: 1.4,
             size: 24.0,
             textAlign: TextAlign.center,
@@ -67,15 +72,16 @@ class _QuizPageState extends State<QuizPage> {
             child: Image.asset(ImagePath.testQuestion),
           ),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton("A. {quiz.option[0]}"),
+          _setButton("A. ${_quizList[_currentIndex]['option'][0]}"),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton("B. {quiz.option[1]}"),
+          _setButton("B. ${_quizList[_currentIndex]['option'][1]}"),
           SizedBox(height: getUniqueHeight(16.0)),
-          _setButton("C. {quiz.option[2]}"),
+          _setButton("C. ${_quizList[_currentIndex]['option'][2]}"),
           SizedBox(height: getUniqueHeight(67.0)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: getUniqueWidth(17.0)),
-            child: CustomElevatedButton(onPressed: () {}, label: "Continue"),
+            child: CustomElevatedButton(
+                onPressed: _onContinueButtonPressed, label: "Continue"),
           ),
         ],
       ),
@@ -98,6 +104,22 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
 
+  void _onContinueButtonPressed() {
+
+
+    if (_currentIndex != _lenOfList - 1) {
+      _currentIndex++;
+    }
+
+    if (_currentIndex == _lenOfList) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => ResultPage()));
+    }
+
+    setState(
+      () {},
+    );
+  }
 
   Border _setBorder() => Border.all(width: 0.5, color: ConstColor.kDarkGrey);
 

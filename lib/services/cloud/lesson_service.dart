@@ -22,6 +22,7 @@ class LessonMethods extends LessonService {
   Future<List<Lesson>> getLessonById(String courseId) async {
     QuerySnapshot snapshot = await _fireStore
         .collection("EdTechLessons")
+        .orderBy('timestamp')
         .where('courseId', isEqualTo: courseId)
         .get();
     List<Lesson> lesson = snapshot.docs

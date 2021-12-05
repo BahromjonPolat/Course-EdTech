@@ -6,15 +6,17 @@ class ChooseLessonsCoursePage extends StatelessWidget {
   Course course;
 
   ChooseLessonsCoursePage(this.course, {Key? key}) : super(key: key);
-  
+
   final LessonService _lessonService = LessonMethods();
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(course.title);
     SizeConfig().init(context);
-    return Scaffold(body: FutureBuilder(
+    return Scaffold(
+        body: FutureBuilder(
       future: _lessonService.getLessonById(course.id),
-      builder: (context,AsyncSnapshot<List<Lesson>> snap) {
+      builder: (context, AsyncSnapshot<List<Lesson>> snap) {
         if (snap.hasData) {
           return Container(
             padding: EdgeInsets.fromLTRB(
@@ -54,9 +56,9 @@ class ChooseLessonsCoursePage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       Lesson lesson;
                       if (index != 0) {
-                         lesson = snap.data![index -1];
+                        lesson = snap.data![index - 1];
                       } else {
-                         lesson = snap.data![index];
+                        lesson = snap.data![index];
                       }
                       return index == 0
                           ?
@@ -68,18 +70,23 @@ class ChooseLessonsCoursePage extends StatelessWidget {
                             )
                           : // SMALL CARD SECTION
                           InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (_)=>  CourseMainPage(lesson)));
-                            },
-                            child: SmallCardMark(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => CourseMainPage(
+                                              lesson,
+                                              courseTitle: course.title,
+                                            )));
+                              },
+                              child: SmallCardMark(
                                 image: ImagePath.courseHtml,
                                 title: lesson.title,
                                 description: "Advanced web applications",
-                                margin:
-                                    EdgeInsets.only(bottom: getUniqueHeight(16)),
-                              
+                                margin: EdgeInsets.only(
+                                    bottom: getUniqueHeight(16)),
                               ),
-                          );
+                            );
                     },
                   ),
                 )
