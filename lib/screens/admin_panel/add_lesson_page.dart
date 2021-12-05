@@ -35,8 +35,8 @@ class _AddingLessonPageState extends State<AddingLessonPage> {
               ),
               TextFormField(
                 controller: _contentController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.newline,
+                keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: _setInputDecoration("Content"),
