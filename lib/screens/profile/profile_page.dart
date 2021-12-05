@@ -1,13 +1,29 @@
 import 'package:course/components/importing_packages.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
-  late BuildContext _context;
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final CloudStoreService _userService = CloudStoreMethods();
+  late UserModel _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _userService
+        .getUserData(FirebaseAuth.instance.currentUser!.uid)
+        .then((value) {
+      _currentUser = value;
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: ConstColor.kWhite,
@@ -64,7 +80,14 @@ class ProfilePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               getUniqueWidth(90.0),
             ),
-            child: Image.asset(ImagePath.profile),
+            child: InkWell(
+                onTap: _chooseImageFromGallery,
+                child: Image.asset(
+                  _currentUser.imageUrl == 'default'
+                      ? ImagePath.profile
+                      : _currentUser.imageUrl,
+                  fit: BoxFit.cover,
+                )),
           ),
         ),
         buttonMethod("Your Courses", context,
@@ -79,7 +102,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // Bu Keyingi pagega o'tadigan button uchun Metod
   buttonMethod(String title, context, {Widget? nextPage}) {
     return InkWell(
       child: Container(
@@ -112,7 +134,7 @@ class ProfilePage extends StatelessWidget {
   void _onLogOutButtonPressed() async {
     showDialog(
         barrierDismissible: false,
-        context: _context,
+        context: context,
         builder: (context) {
           return AlertDialog(
             title: Row(
@@ -166,5 +188,24 @@ class ProfilePage extends StatelessWidget {
             ),
           );
         });
+  }
+
+  _chooseImageFromGallery() async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    // _pickedFile = PickedFile(image!.path);
+    String imageName = FirebaseAuth.instance.currentUser!.uid + ".jpg";
+    Reference ref =
+        FirebaseStorage.instance.ref('EdTechImages').child(imageName);
+
+    UploadTask task = ref.putFile(File(image!.path));
+    String url = await (await task.whenComplete(() {
+      Fluttertoast.showToast(msg: "Image was uploaded");
+    }))
+        .ref
+        .getDownloadURL();
+
+    await _userService.updateUser({'imageUrl': url}).whenComplete(() {
+      setState(() {});
+    });
   }
 }

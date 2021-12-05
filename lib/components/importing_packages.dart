@@ -68,6 +68,7 @@ export 'package:course/models/course_model.dart';
 export 'package:course/models/quiz_model.dart';
 export 'package:course/models/category_model.dart';
 export 'package:course/models/lesson_model.dart';
+export 'package:course/models/discuss_model.dart';
 
 // IMPORTING PACKAGES
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,3 +82,6 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter_svg/svg.dart';
 export 'package:uuid/uuid.dart';
+export 'package:image_picker/image_picker.dart';
+export 'package:firebase_storage/firebase_storage.dart';
+export 'dart:io';

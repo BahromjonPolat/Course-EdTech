@@ -6,10 +6,14 @@ abstract class CloudStoreService {
   Future<List<UserModel>> getAllUsers();
 
   Future<UserModel> getUserData(String uid);
+
+  Future updateUser(Map<String, dynamic> map);
 }
 
 class CloudStoreMethods extends CloudStoreService {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+
+  final String _uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Future setUserData(UserModel userModel) async {
@@ -38,5 +42,10 @@ class CloudStoreMethods extends CloudStoreService {
         .toList();
 
     return allUsers;
+  }
+
+  @override
+  Future updateUser(Map<String, dynamic> map) async {
+    await _fireStore.doc("EdTechUsers/$_uid").update(map);
   }
 }
