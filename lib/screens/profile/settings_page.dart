@@ -135,12 +135,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   icon: const Icon(Icons.arrow_forward_ios),
                 ),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => nextPage ?? const HomePage(),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => nextPage ?? const HomePage(),
+            //   ),
+            // );
           },
         ),
       ),

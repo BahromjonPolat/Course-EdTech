@@ -58,13 +58,14 @@ class TextFieldMark extends StatelessWidget {
     if (_textController.text.isNotEmpty) {
       _textController.clear();
       //debugPrint("Search: $_searchText  XXX");
-      if (check)
+      if (check) {
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => SearchResultPage(
                       searchText: _searchText.toString(),
                     )));
+      }
     }
   }
 }

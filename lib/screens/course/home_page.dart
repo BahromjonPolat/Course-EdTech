@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:course/components/local_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:course/components/importing_packages.dart';
 
@@ -99,6 +100,7 @@ class _HomePageState extends State<HomePage> {
                 future: _courseService.getAllCourses(),
                 builder: (context, AsyncSnapshot<List<Course>> snap) {
                   if (snap.hasData) {
+                    LocalData.localCourseList = snap.data!;
                     return ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       padding: EdgeInsets.zero,

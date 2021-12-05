@@ -59,6 +59,7 @@ export 'package:course/components/page_indicator.dart';
 export 'package:course/components/intro_page_layout.dart';
 export 'package:course/components/intro_page_component_list.dart';
 export 'package:course/components/tab_button.dart';
+export 'package:course/components/local_data.dart';
 
 // MODELS
 export 'package:course/models/user_model.dart';
