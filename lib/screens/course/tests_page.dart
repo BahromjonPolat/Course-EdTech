@@ -95,7 +95,13 @@ class _TestsPageState extends State<TestsPage> {
                       weight: FontWeight.w400,
                     ),
                     SizedBox(height: getUniqueHeight(4.0)),
-                    CustomTextWidget(data['question'], size: 20.0),
+                    Text(
+                      data['question'],
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: getUniqueWidth(20.0),
+                      ),
+                    ),
                     SizedBox(height: getUniqueHeight(8.0)),
                     CustomTextWidget(
                       data['question'],
@@ -122,14 +128,16 @@ class _TestsPageState extends State<TestsPage> {
     return snap.docs;
   }
 
-  OutlinedButton _setButton(List list,) => OutlinedButton(
+  OutlinedButton _setButton(
+    List list,
+  ) =>
+      OutlinedButton(
         onPressed: () {
           _onBeginButtonPressed(list);
         },
         child: CustomTextWidget('Begin'),
         style: OutlinedButton.styleFrom(
-          side: const BorderSide(
-              width: 1.0, color: ConstColor.kOrangeE35),
+          side: const BorderSide(width: 1.0, color: ConstColor.kOrangeE35),
           shape: RoundedRectangleBorder(borderRadius: _setBorderRadius()),
           fixedSize: Size(
             MediaQuery.of(context).size.width,

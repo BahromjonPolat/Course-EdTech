@@ -59,7 +59,7 @@ class _DiscussPageState extends State<DiscussPage> {
                   alignment: discuss.userId == _uid
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
-                  child: _setLeftMessage(discuss),
+                  child: _setMessageLayout(discuss),
                 );
               });
         } else if (snap.hasError) {
@@ -108,12 +108,28 @@ class _DiscussPageState extends State<DiscussPage> {
     });
   }
 
-  _setLeftMessage(Discuss discuss) => Container(
+  _setMessageLayout(Discuss discuss) => Container(
+        margin: EdgeInsets.symmetric(vertical: getUniqueHeight(3.0)),
+        padding: EdgeInsets.symmetric(
+          horizontal: getUniqueWidth(8.0),
+          vertical: getUniqueHeight(6.0),
+        ),
         constraints: BoxConstraints(maxWidth: _width * 0.8),
-        child: CustomTextWidget(discuss.message),
+        child: CustomTextWidget(
+          discuss.message,
+          color: _uid == discuss.userId ? ConstColor.kWhite : ConstColor.dark,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: ConstColor.kOrangeE35,
+            width: getUniqueWidth(0.5),
+          ),
+          borderRadius: BorderRadius.circular(getUniqueWidth(6.0)),
+          color: _uid == discuss.userId
+              ? ConstColor.kOrangeE35
+              : ConstColor.kWhite,
+        ),
       );
-
-  _setRightMessage(Discuss discuss) => Container();
 
   OutlineInputBorder _setBorder() =>
       const OutlineInputBorder(borderSide: BorderSide.none);
