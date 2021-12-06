@@ -14,7 +14,7 @@ class DiscussMethods extends DiscussService {
     QuerySnapshot snapshot = await _fireStore
         .collection('EdTechDiscusses')
         .orderBy('timestamp')
-        .where('courseId', isEqualTo: lessonId)
+        .where('lessonId', isEqualTo: lessonId)
         .get();
 
     List<Discuss> discussList = snapshot.docs

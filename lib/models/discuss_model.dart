@@ -16,7 +16,7 @@ class Discuss {
   Discuss.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _lessonId = json['lessonId'];
-    _userId = json['userID'];
+    _userId = json['userId'];
     _message = json['message'];
     _timestamp = json['timestamp'].toDate();
   }

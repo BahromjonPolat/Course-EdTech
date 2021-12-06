@@ -18,6 +18,7 @@ class _DiscussPageState extends State<DiscussPage> {
   final TextEditingController _messageController = TextEditingController();
   final _uid = FirebaseAuth.instance.currentUser!.uid;
   late String _lessonId;
+  late double _width;
 
   @override
   void initState() {
@@ -27,6 +28,7 @@ class _DiscussPageState extends State<DiscussPage> {
 
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
     return SliverToBoxAdapter(
       child: SizedBox(
         height: getUniqueHeight(572.0),
@@ -41,11 +43,25 @@ class _DiscussPageState extends State<DiscussPage> {
   }
 
   Expanded _buildMessageList() {
-    return Expanded(child: FutureBuilder(
+    return Expanded(
+        child: FutureBuilder(
       future: _discussService.getDiscussList(_lessonId),
-      builder: (context, snap) {
+      builder: (context, AsyncSnapshot<List<Discuss>> snap) {
         if (snap.hasData) {
-          return Image.asset(ImagePath.testQuestion);
+          if (snap.data!.isEmpty) {
+            return Image.asset(ImagePath.testQuestion);
+          }
+          return ListView.builder(
+              itemCount: snap.data!.length,
+              itemBuilder: (context, index) {
+                Discuss discuss = snap.data![index];
+                return Container(
+                  alignment: discuss.userId == _uid
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: _setLeftMessage(discuss),
+                );
+              });
         } else if (snap.hasError) {
           return Image.asset(ImagePath.notFound);
         }
@@ -91,6 +107,13 @@ class _DiscussPageState extends State<DiscussPage> {
       setState(() {});
     });
   }
+
+  _setLeftMessage(Discuss discuss) => Container(
+        constraints: BoxConstraints(maxWidth: _width * 0.8),
+        child: CustomTextWidget(discuss.message),
+      );
+
+  _setRightMessage(Discuss discuss) => Container();
 
   OutlineInputBorder _setBorder() =>
       const OutlineInputBorder(borderSide: BorderSide.none);
