@@ -59,7 +59,9 @@ class _DiscussPageState extends State<DiscussPage> {
                   alignment: discuss.userId == _uid
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
-                  child: _setMessageLayout(discuss),
+                  child: discuss.userId == _uid
+                      ? _setRightMessageLayout(discuss)
+                      : _setLeftMessageLayout(discuss),
                 );
               });
         } else if (snap.hasError) {
@@ -108,26 +110,41 @@ class _DiscussPageState extends State<DiscussPage> {
     });
   }
 
-  _setMessageLayout(Discuss discuss) => Container(
+  _setLeftMessageLayout(Discuss discuss) => Container(
         margin: EdgeInsets.symmetric(vertical: getUniqueHeight(3.0)),
         padding: EdgeInsets.symmetric(
-          horizontal: getUniqueWidth(8.0),
-          vertical: getUniqueHeight(6.0),
+          horizontal: getUniqueWidth(12.0),
+          vertical: getUniqueHeight(8.0),
         ),
         constraints: BoxConstraints(maxWidth: _width * 0.8),
         child: CustomTextWidget(
           discuss.message,
-          color: _uid == discuss.userId ? ConstColor.kWhite : ConstColor.dark,
+          color: ConstColor.dark,
         ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: ConstColor.kOrangeE35,
-            width: getUniqueWidth(0.5),
-          ),
-          borderRadius: BorderRadius.circular(getUniqueWidth(6.0)),
-          color: _uid == discuss.userId
-              ? ConstColor.kOrangeE35
-              : ConstColor.kWhite,
+              color: ConstColor.kOrangeE35, width: getUniqueWidth(0.5)),
+          borderRadius: BorderRadius.circular(getUniqueWidth(32.0)),
+          color: ConstColor.kWhite,
+        ),
+      );
+
+  _setRightMessageLayout(Discuss discuss) => Container(
+        margin: EdgeInsets.symmetric(vertical: getUniqueHeight(3.0)),
+        padding: EdgeInsets.symmetric(
+          horizontal: getUniqueWidth(12.0),
+          vertical: getUniqueHeight(8.0),
+        ),
+        constraints: BoxConstraints(maxWidth: _width * 0.8),
+        child: CustomTextWidget(
+          discuss.message,
+          color: ConstColor.kWhite,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+              color: ConstColor.kOrangeE35, width: getUniqueWidth(0.5)),
+          borderRadius: BorderRadius.circular(getUniqueWidth(32.0)),
+          color: ConstColor.kOrangeE35,
         ),
       );
 
