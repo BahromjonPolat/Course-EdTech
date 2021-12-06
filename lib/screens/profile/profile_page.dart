@@ -1,4 +1,5 @@
 import 'package:course/components/importing_packages.dart';
+import 'package:course/screens/admin_panel/upload_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -81,17 +82,12 @@ class _ProfilePageState extends State<ProfilePage> {
               getUniqueWidth(90.0),
             ),
             child: InkWell(
-                onTap: _chooseImageFromGallery,
-                child: Image.asset(
-                  _currentUser.imageUrl == 'default'
-                      ? ImagePath.profile
-                      : _currentUser.imageUrl,
-                  fit: BoxFit.cover,
-                )),
+              onTap: _chooseImageFromGallery,
+              child: _showDefaultImage()
+            ),
           ),
         ),
-        buttonMethod("Your Courses", context,
-            nextPage: const OwnersCoursesPage()),
+        buttonMethod("Your Courses", context, nextPage: const UploadingPage()),
         // Keyingi Pageni yozib qo'yish kerak
         buttonMethod("Saved", context, nextPage: SavedAndPage()),
         // Keyingi Pageni yozib qo'yish kerak
@@ -208,4 +204,6 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {});
     });
   }
+
+  Image _showDefaultImage()=> Image.asset(ImagePath.profile);
 }

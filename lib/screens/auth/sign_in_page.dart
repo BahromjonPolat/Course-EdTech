@@ -42,7 +42,9 @@ class _SignInPageState extends State<SignInPage> {
                       FontWeight.w500, ConstColor.dark)),
               Container(
                   margin: EdgeInsets.only(
-                      left: getUniqueWidth(33), bottom: getUniqueHeight(8)),
+                    left: getUniqueWidth(33),
+                    bottom: getUniqueHeight(8),
+                  ),
                   height: getUniqueHeight(21),
                   width: getUniqueWidth(341),
                   child: returnText(
