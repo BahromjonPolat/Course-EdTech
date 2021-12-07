@@ -15,6 +15,7 @@ class DiscussPage extends StatefulWidget {
 class _DiscussPageState extends State<DiscussPage> {
   final Uuid _uuid = const Uuid();
   final DiscussService _discussService = DiscussMethods();
+  final CloudStoreService _userService = CloudStoreMethods();
   final TextEditingController _messageController = TextEditingController();
   final _uid = FirebaseAuth.instance.currentUser!.uid;
   late String _lessonId;
@@ -110,22 +111,46 @@ class _DiscussPageState extends State<DiscussPage> {
     });
   }
 
-  _setLeftMessageLayout(Discuss discuss) => Container(
-        margin: EdgeInsets.symmetric(vertical: getUniqueHeight(3.0)),
-        padding: EdgeInsets.symmetric(
-          horizontal: getUniqueWidth(12.0),
-          vertical: getUniqueHeight(8.0),
-        ),
+  _setLeftMessageLayout(Discuss discuss) => ConstrainedBox(
         constraints: BoxConstraints(maxWidth: _width * 0.8),
-        child: CustomTextWidget(
-          discuss.message,
-          color: ConstColor.dark,
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(
-              color: ConstColor.kOrangeE35, width: getUniqueWidth(0.5)),
-          borderRadius: BorderRadius.circular(getUniqueWidth(32.0)),
-          color: ConstColor.kWhite,
+        child: Padding(
+          padding:  EdgeInsets.symmetric(vertical: getUniqueHeight(3.0)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              FutureBuilder(
+                  future: _userService.getUserData(discuss.userId),
+                  builder: (context, AsyncSnapshot<UserModel> snap) {
+                    if (snap.hasData) {
+                      return _setCircleAvatar(snap.data!.imageUrl);
+                    }
+                    return _setCircleAvatar('default');
+                  }),
+              Container(
+                constraints: BoxConstraints(maxWidth: _width * 0.65),
+                margin: EdgeInsets.symmetric(
+                    horizontal: getUniqueWidth(6.0)),
+                padding: EdgeInsets.symmetric(
+                  horizontal: getUniqueWidth(12.0),
+                  vertical: getUniqueHeight(8.0),
+                ),
+                child: CustomTextWidget(
+                  discuss.message,
+                  color: ConstColor.dark,
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: ConstColor.kOrangeE35, width: getUniqueWidth(0.5)),
+                  borderRadius: _setBorderRadiusOnly(
+                    topLeft: 32.0,
+                    topRight: 32.0,
+                    bottomRight: 32.0,
+                  ),
+                  color: ConstColor.kWhite,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 
@@ -143,9 +168,34 @@ class _DiscussPageState extends State<DiscussPage> {
         decoration: BoxDecoration(
           border: Border.all(
               color: ConstColor.kOrangeE35, width: getUniqueWidth(0.5)),
-          borderRadius: BorderRadius.circular(getUniqueWidth(32.0)),
+          borderRadius: _setBorderRadiusOnly(
+            topRight: 32.0,
+            topLeft: 32.0,
+            bottomLeft: 32.0,
+
+          ),
           color: ConstColor.kOrangeE35,
         ),
+      );
+
+  CircleAvatar _setCircleAvatar(String imageUrl) {
+    if (imageUrl != 'default') {
+      return CircleAvatar(backgroundImage: NetworkImage(imageUrl));
+    }
+    return const CircleAvatar(backgroundImage: AssetImage(ImagePath.profile));
+  }
+
+  BorderRadius _setBorderRadiusOnly({
+    double topLeft = 0.0,
+    double topRight = 0.0,
+    double bottomRight = 0.0,
+    double bottomLeft = 0.0,
+  }) =>
+      BorderRadius.only(
+        topLeft: Radius.circular(topLeft),
+        topRight: Radius.circular(topRight),
+        bottomRight: Radius.circular(bottomRight),
+        bottomLeft: Radius.circular(bottomLeft),
       );
 
   OutlineInputBorder _setBorder() =>

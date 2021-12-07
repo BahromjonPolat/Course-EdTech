@@ -39,7 +39,7 @@ class ResultPage extends StatelessWidget {
 
   String _allCorrect() => len == result
       ? "Congratulations for getting \nall the answers correct!"
-      : "Congratulations for getting \n${len - result} / $len the answers correct!";
+      : "Congratulations for getting \n$result / $len the answers correct!";
 
   Row _showSocialNetworkButtons() {
     return Row(
