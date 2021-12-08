@@ -47,3 +47,6 @@ Now it contains all the screen, thanks for your love and support 🙏
 ![Preview](9.png)
 
 ![Preview](10.png)
+
+
+<a href="https://github.com/Neo-Uz/Course-EdTech/blob/main/assets/release/app-release.apk?raw=true" target="_blank">Ilovani yuklab olish</a>
