@@ -2,13 +2,14 @@ import 'package:course/components/importing_packages.dart';
 
 class CustomTabButton extends StatelessWidget {
   String label;
-
+  VoidCallback onPressed;
   BorderRadius? borderRadius;
   Color? color;
 
 
   CustomTabButton({
     Key? key,
+    required this.onPressed,
     required this.label,
     this.borderRadius,
     this.color,
@@ -17,20 +18,23 @@ class CustomTabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        alignment: Alignment.center,
-        height: getUniqueHeight(42.0),
-        decoration: BoxDecoration(
-          color: ConstColor.kLightGrey,
-          borderRadius: borderRadius ?? BorderRadius.zero,
-        ),
-        child: CustomTextWidget(
-          label,
-          size: getUniqueWidth(16.0),
-          weight: FontWeight.w400,
-          fontFamily: "Inter",
-          color: color ?? ConstColor.kDarkGrey,
+      child: InkWell(
+        onTap: onPressed,
+        child: Container(
+          alignment: Alignment.center,
+          height: getUniqueHeight(42.0),
+          decoration: BoxDecoration(
+            color: ConstColor.kLightGrey,
+            borderRadius: borderRadius ?? BorderRadius.zero,
+          ),
+          child: CustomTextWidget(
+            label,
+            size: getUniqueWidth(16.0),
+            weight: FontWeight.w400,
+            fontFamily: "Inter",
+            color: color ?? ConstColor.kDarkGrey,
 
+          ),
         ),
       ),
     );

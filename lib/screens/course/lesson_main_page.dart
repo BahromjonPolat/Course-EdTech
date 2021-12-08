@@ -122,17 +122,14 @@ class _CourseMainPageState extends State<CourseMainPage> {
   }
 
   _customTabButton(String label, BorderRadius borderRadius, int index) {
-    return Expanded(
-      child: InkWell(
-        onTap: () {
-          _changeIndex(index);
-        },
-        child: CustomTabButton(
-          label: label,
-          borderRadius: borderRadius,
-          color: _currentIndex == index ? ConstColor.dark : ConstColor.darkGrey,
-        ),
-      ),
+    return CustomTabButton(
+      onPressed: (){
+        _changeIndex(index);
+
+      },
+      label: label,
+      borderRadius: borderRadius,
+      color: _currentIndex == index ? ConstColor.dark : ConstColor.darkGrey,
     );
   }
 

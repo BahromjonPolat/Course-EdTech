@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        buttonMethod("Your Courses", context, nextPage: const UploadingPage()),
+        buttonMethod("Your Courses", context, nextPage: const OwnersCoursesPage()),
         // Keyingi Pageni yozib qo'yish kerak
         buttonMethod("Saved", context, nextPage: SavedAndPage()),
         // Keyingi Pageni yozib qo'yish kerak
